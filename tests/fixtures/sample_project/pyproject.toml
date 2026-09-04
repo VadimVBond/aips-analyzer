@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "sample-project"
+version = "0.1.0"
+description = "A sample Django project for testing AIPS Analyzer"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^5.0"
+celery = "^5.3"
+redis = "^5.0"
+psycopg2-binary = "^2.9"
+djangorestframework = "^3.14"
+
+[tool.poetry.dev-dependencies]
+pytest = "^8.0"
+pytest-django = "^4.7"
+factory-boy = "^3.3"
+black = "^24.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aips-analyzer"
+version = "0.1.0"
+description = "AIPS Analyzer — Deterministic static analysis engine for software projects"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+
+dependencies = [
+    "tomllib; python_version < '3.11'",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov",
+]
+
+[project.scripts]
+aips-analyze = "aips_analyzer.cli.main:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["aips_analyzer*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+norecursedirs = ["fixtures"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v"

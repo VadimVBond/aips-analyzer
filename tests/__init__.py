@@ -1,0 +1,1 @@
+"""AIPS Analyzer — Test suite."""
