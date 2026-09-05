@@ -57,7 +57,6 @@ def analyze_project(
     report = EvidenceReport(
         project={
             "name": project_root.name,
-            "root": str(project_root),
             "analyzed_at": datetime.now(timezone.utc).isoformat(),
         }
     )
@@ -140,8 +139,17 @@ def analyze_project(
     # ── Save output ────────────────────────────────────────────────────────
     if output_dir is not None:
         output_path = Path(output_dir) / report.project["name"] / "evidence.json"
+        # Use a relative, portable path in the artifact itself,
+        # so the serialized evidence does not leak the absolute
+        # filesystem path of the machine that produced it.
+        try:
+            relative_output = output_path.relative_to(Path.cwd())
+            report.project["output_file"] = str(relative_output).replace("\\", "/")
+        except ValueError:
+            report.project["output_file"] = (
+                f"{report.project['name']}/evidence.json"
+            )
         serialize_report(report, output_path)
-        report.project["output_file"] = str(output_path)
         logger.info(f"Saved to: {output_path}")
 
     return report

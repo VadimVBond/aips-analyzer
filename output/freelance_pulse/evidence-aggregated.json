@@ -1,0 +1,2823 @@
+{
+  "canonical_metrics": [
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:discovery.config_flags..gitignore",
+      "name": "discovery.config_flags..gitignore",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "count",
+      "value": true
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:discovery.config_flags.Dockerfile",
+      "name": "discovery.config_flags.Dockerfile",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "count",
+      "value": false
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:discovery.config_flags.conftest.py",
+      "name": "discovery.config_flags.conftest.py",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "count",
+      "value": true
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:discovery.config_flags.docker-compose",
+      "name": "discovery.config_flags.docker-compose",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "count",
+      "value": false
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:discovery.config_flags.manage.py",
+      "name": "discovery.config_flags.manage.py",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "count",
+      "value": true
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:discovery.config_flags.package.json",
+      "name": "discovery.config_flags.package.json",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "count",
+      "value": true
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:discovery.config_flags.pyproject.toml",
+      "name": "discovery.config_flags.pyproject.toml",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "count",
+      "value": false
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:discovery.config_flags.pytest.ini/setup.cfg",
+      "name": "discovery.config_flags.pytest.ini/setup.cfg",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "count",
+      "value": true
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:discovery.config_flags.requirements.txt",
+      "name": "discovery.config_flags.requirements.txt",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "count",
+      "value": true
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:discovery.css_files_count",
+      "name": "discovery.css_files_count",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "files",
+      "value": 1
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:discovery.files_by_type.batch",
+      "name": "discovery.files_by_type.batch",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "files",
+      "value": 2
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:discovery.files_by_type.css",
+      "name": "discovery.files_by_type.css",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "files",
+      "value": 1
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:discovery.files_by_type.django_manage",
+      "name": "discovery.files_by_type.django_manage",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "files",
+      "value": 1
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:discovery.files_by_type.dotenv",
+      "name": "discovery.files_by_type.dotenv",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "files",
+      "value": 1
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:discovery.files_by_type.gitignore",
+      "name": "discovery.files_by_type.gitignore",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "files",
+      "value": 1
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:discovery.files_by_type.html",
+      "name": "discovery.files_by_type.html",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "files",
+      "value": 42
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:discovery.files_by_type.ini",
+      "name": "discovery.files_by_type.ini",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "files",
+      "value": 2
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:discovery.files_by_type.javascript",
+      "name": "discovery.files_by_type.javascript",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "files",
+      "value": 2
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:discovery.files_by_type.json",
+      "name": "discovery.files_by_type.json",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "files",
+      "value": 31
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:discovery.files_by_type.markdown",
+      "name": "discovery.files_by_type.markdown",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "files",
+      "value": 151
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:discovery.files_by_type.other",
+      "name": "discovery.files_by_type.other",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "files",
+      "value": 24
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:discovery.files_by_type.pytest_conftest",
+      "name": "discovery.files_by_type.pytest_conftest",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "files",
+      "value": 1
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:discovery.files_by_type.python",
+      "name": "discovery.files_by_type.python",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "files",
+      "value": 209
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:discovery.files_by_type.text",
+      "name": "discovery.files_by_type.text",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "files",
+      "value": 7
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:discovery.files_by_type.yaml",
+      "name": "discovery.files_by_type.yaml",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "files",
+      "value": 9
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:discovery.html_files_count",
+      "name": "discovery.html_files_count",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "files",
+      "value": 42
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:discovery.js_files_count",
+      "name": "discovery.js_files_count",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "files",
+      "value": 2
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:discovery.json_files_count",
+      "name": "discovery.json_files_count",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "files",
+      "value": 31
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:discovery.markdown_files_count",
+      "name": "discovery.markdown_files_count",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "files",
+      "value": 151
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:discovery.python_files_count",
+      "name": "discovery.python_files_count",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "files",
+      "value": 209
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:discovery.sql_files_count",
+      "name": "discovery.sql_files_count",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "files",
+      "value": 0
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:discovery.template_files_count",
+      "name": "discovery.template_files_count",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "files",
+      "value": 0
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:discovery.test_files_count",
+      "name": "discovery.test_files_count",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "files",
+      "value": 74
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:total_directories:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:discovery.total_directories",
+      "name": "discovery.total_directories",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "count",
+      "value": 56
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:total_files:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:discovery.total_files",
+      "name": "discovery.total_files",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "files",
+      "value": 484
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:discovery.yaml_files_count",
+      "name": "discovery.yaml_files_count",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "files",
+      "value": 9
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:blank_lines:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.blank_lines",
+      "name": "repository.blank_lines",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "lines",
+      "value": 5081
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:celery_task_modules:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.celery_task_modules",
+      "name": "repository.celery_task_modules",
+      "notes": null,
+      "source": "repository_metric_evidence",
+      "unit": "count",
+      "value": 1
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:code_lines:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.code_lines",
+      "name": "repository.code_lines",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "lines",
+      "value": 29311
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:comment_lines:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.comment_lines",
+      "name": "repository.comment_lines",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "lines",
+      "value": 1382
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:repository.comment_ratio",
+      "name": "repository.comment_ratio",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "ratio",
+      "value": 0.039
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:css_files:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.css_files",
+      "name": "repository.css_files",
+      "notes": null,
+      "source": "repository_metric_evidence",
+      "unit": "files",
+      "value": 1
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:cyclic_dependencies_found:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.cyclic_dependencies_found",
+      "name": "repository.cyclic_dependencies_found",
+      "notes": null,
+      "source": "repository_metric_evidence",
+      "unit": "count",
+      "value": 1
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:django_apps_found_ast:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.django_apps_found_ast",
+      "name": "repository.django_apps_found_ast",
+      "notes": null,
+      "source": "repository_metric_evidence",
+      "unit": "count",
+      "value": 5
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:django_apps_heuristic:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.django_apps_heuristic",
+      "name": "repository.django_apps_heuristic",
+      "notes": null,
+      "source": "repository_metric_evidence",
+      "unit": "count",
+      "value": 5
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:repository.files_read_errors",
+      "name": "repository.files_read_errors",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "files",
+      "value": 0
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:git_branches:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.git_branches",
+      "name": "repository.git_branches",
+      "notes": null,
+      "source": "repository_metric_evidence",
+      "unit": "count",
+      "value": 2
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:git_commits:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.git_commits",
+      "name": "repository.git_commits",
+      "notes": null,
+      "source": "repository_metric_evidence",
+      "unit": "count",
+      "value": 38
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:git_contributors:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.git_contributors",
+      "name": "repository.git_contributors",
+      "notes": null,
+      "source": "repository_metric_evidence",
+      "unit": "count",
+      "value": 1
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:high_fan_in_modules:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.high_fan_in_modules",
+      "name": "repository.high_fan_in_modules",
+      "notes": null,
+      "source": "repository_metric_evidence",
+      "unit": "count",
+      "value": 27
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:high_fan_out_modules:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.high_fan_out_modules",
+      "name": "repository.high_fan_out_modules",
+      "notes": null,
+      "source": "repository_metric_evidence",
+      "unit": "count",
+      "value": 2
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:html_files:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.html_files",
+      "name": "repository.html_files",
+      "notes": null,
+      "source": "repository_metric_evidence",
+      "unit": "files",
+      "value": 42
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:html_template_files:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.html_template_files",
+      "name": "repository.html_template_files",
+      "notes": null,
+      "source": "repository_metric_evidence",
+      "unit": "files",
+      "value": 0
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:js_files:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.js_files",
+      "name": "repository.js_files",
+      "notes": null,
+      "source": "repository_metric_evidence",
+      "unit": "files",
+      "value": 2
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:json_files:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.json_files",
+      "name": "repository.json_files",
+      "notes": null,
+      "source": "repository_metric_evidence",
+      "unit": "files",
+      "value": 31
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:repository.loc_by_language.css.blank",
+      "name": "repository.loc_by_language.css.blank",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "lines",
+      "value": 1
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:repository.loc_by_language.css.code",
+      "name": "repository.loc_by_language.css.code",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "lines",
+      "value": 3
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:repository.loc_by_language.css.comment",
+      "name": "repository.loc_by_language.css.comment",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "lines",
+      "value": 1
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:repository.loc_by_language.css.files",
+      "name": "repository.loc_by_language.css.files",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "files",
+      "value": 1
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:repository.loc_by_language.css.total",
+      "name": "repository.loc_by_language.css.total",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "lines",
+      "value": 5
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:repository.loc_by_language.html.blank",
+      "name": "repository.loc_by_language.html.blank",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "lines",
+      "value": 244
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:repository.loc_by_language.html.code",
+      "name": "repository.loc_by_language.html.code",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "lines",
+      "value": 3295
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:repository.loc_by_language.html.comment",
+      "name": "repository.loc_by_language.html.comment",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "lines",
+      "value": 72
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:repository.loc_by_language.html.files",
+      "name": "repository.loc_by_language.html.files",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "files",
+      "value": 42
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:repository.loc_by_language.html.total",
+      "name": "repository.loc_by_language.html.total",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "lines",
+      "value": 3611
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:repository.loc_by_language.javascript.blank",
+      "name": "repository.loc_by_language.javascript.blank",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "lines",
+      "value": 0
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:repository.loc_by_language.javascript.code",
+      "name": "repository.loc_by_language.javascript.code",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "lines",
+      "value": 33
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:repository.loc_by_language.javascript.comment",
+      "name": "repository.loc_by_language.javascript.comment",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "lines",
+      "value": 0
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:repository.loc_by_language.javascript.files",
+      "name": "repository.loc_by_language.javascript.files",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "files",
+      "value": 2
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:repository.loc_by_language.javascript.total",
+      "name": "repository.loc_by_language.javascript.total",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "lines",
+      "value": 33
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:repository.loc_by_language.python.blank",
+      "name": "repository.loc_by_language.python.blank",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "lines",
+      "value": 4836
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:repository.loc_by_language.python.code",
+      "name": "repository.loc_by_language.python.code",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "lines",
+      "value": 25980
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:repository.loc_by_language.python.comment",
+      "name": "repository.loc_by_language.python.comment",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "lines",
+      "value": 1309
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:repository.loc_by_language.python.files",
+      "name": "repository.loc_by_language.python.files",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "files",
+      "value": 211
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:repository.loc_by_language.python.total",
+      "name": "repository.loc_by_language.python.total",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "lines",
+      "value": 32125
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:loc_css:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.loc_css",
+      "name": "repository.loc_css",
+      "notes": null,
+      "source": "repository_metric_evidence",
+      "unit": "lines",
+      "value": 5
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:loc_html:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.loc_html",
+      "name": "repository.loc_html",
+      "notes": null,
+      "source": "repository_metric_evidence",
+      "unit": "lines",
+      "value": 3611
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:loc_javascript:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.loc_javascript",
+      "name": "repository.loc_javascript",
+      "notes": null,
+      "source": "repository_metric_evidence",
+      "unit": "lines",
+      "value": 33
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:loc_python:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.loc_python",
+      "name": "repository.loc_python",
+      "notes": null,
+      "source": "repository_metric_evidence",
+      "unit": "lines",
+      "value": 32125
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:markdown_files:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.markdown_files",
+      "name": "repository.markdown_files",
+      "notes": null,
+      "source": "repository_metric_evidence",
+      "unit": "files",
+      "value": 151
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:migration_directories:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.migration_directories",
+      "name": "repository.migration_directories",
+      "notes": null,
+      "source": "repository_metric_evidence",
+      "unit": "ratio",
+      "value": 5
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:migration_files:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.migration_files",
+      "name": "repository.migration_files",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "files",
+      "value": 29
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:model_modules:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.model_modules",
+      "name": "repository.model_modules",
+      "notes": null,
+      "source": "repository_metric_evidence",
+      "unit": "count",
+      "value": 8
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:node_dev_deps:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.node_dev_deps",
+      "name": "repository.node_dev_deps",
+      "notes": null,
+      "source": "repository_metric_evidence",
+      "unit": "count",
+      "value": 3
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:node_production_deps:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.node_production_deps",
+      "name": "repository.node_production_deps",
+      "notes": null,
+      "source": "repository_metric_evidence",
+      "unit": "count",
+      "value": 0
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:python_dev_deps:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.python_dev_deps",
+      "name": "repository.python_dev_deps",
+      "notes": "Count of dev Python dependencies",
+      "source": "repository_metric_evidence",
+      "unit": "count",
+      "value": 0
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:python_files:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.python_files",
+      "name": "repository.python_files",
+      "notes": null,
+      "source": "repository_metric_evidence",
+      "unit": "files",
+      "value": 209
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:python_modules:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.python_modules",
+      "name": "repository.python_modules",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "count",
+      "value": 202
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:python_modules_parsed:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.python_modules_parsed",
+      "name": "repository.python_modules_parsed",
+      "notes": null,
+      "source": "repository_metric_evidence",
+      "unit": "count",
+      "value": 182
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:python_modules_with_parse_errors:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.python_modules_with_parse_errors",
+      "name": "repository.python_modules_with_parse_errors",
+      "notes": null,
+      "source": "repository_metric_evidence",
+      "unit": "count",
+      "value": 1
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:python_packages:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.python_packages",
+      "name": "repository.python_packages",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "count",
+      "value": 21
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:python_production_deps:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.python_production_deps",
+      "name": "repository.python_production_deps",
+      "notes": "Count of production Python dependencies",
+      "source": "repository_metric_evidence",
+      "unit": "count",
+      "value": 9
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:sql_files:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.sql_files",
+      "name": "repository.sql_files",
+      "notes": null,
+      "source": "repository_metric_evidence",
+      "unit": "files",
+      "value": 0
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:test_files:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.test_files",
+      "name": "repository.test_files",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "files",
+      "value": 74
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:test_files_loc:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.test_files_loc",
+      "name": "repository.test_files_loc",
+      "notes": null,
+      "source": "repository_metric_evidence",
+      "unit": "files",
+      "value": 74
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:repository.total_files_counted",
+      "name": "repository.total_files_counted",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "files",
+      "value": 256
+    },
+    {
+      "evidence_refs": [],
+      "metric_id": "metric:repository.total_lines",
+      "name": "repository.total_lines",
+      "notes": null,
+      "source": "analyzer_metrics",
+      "unit": "lines",
+      "value": 35774
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:total_loc:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.total_loc",
+      "name": "repository.total_loc",
+      "notes": "Total lines including blank/comments",
+      "source": "repository_metric_evidence",
+      "unit": "lines",
+      "value": 35774
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:view_modules:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.view_modules",
+      "name": "repository.view_modules",
+      "notes": null,
+      "source": "repository_metric_evidence",
+      "unit": "count",
+      "value": 1
+    },
+    {
+      "evidence_refs": [
+        "repository_metric:yaml_files:repository.metric.filesystem:filesystem:<none>"
+      ],
+      "metric_id": "metric:repository.yaml_files",
+      "name": "repository.yaml_files",
+      "notes": null,
+      "source": "repository_metric_evidence",
+      "unit": "files",
+      "value": 9
+    }
+  ],
+  "facts": [
+    {
+      "evidence_refs": [
+        "technology:Alpine.js:technology.content_pattern:content_pattern:x-[a-z]+\\s*=|alpine\\.js"
+      ],
+      "fact_id": "technology_present[Alpine.js]",
+      "fact_type": "technology_present",
+      "subject": "Alpine.js",
+      "value": true
+    },
+    {
+      "evidence_refs": [
+        "technology:Bootstrap:technology.content_pattern:content_pattern:class=\"[^\"]*\\b(container|row|col-|btn|navbar|modal)\\b"
+      ],
+      "fact_id": "technology_present[Bootstrap]",
+      "fact_type": "technology_present",
+      "subject": "Bootstrap",
+      "value": true
+    },
+    {
+      "evidence_refs": [
+        "technology:Celery:technology.content_pattern:content_pattern:celery",
+        "technology:Celery:technology.dependency_declaration:dependency_declaration:celery",
+        "technology:Celery:technology.import_pattern:import_pattern:import celery"
+      ],
+      "fact_id": "technology_present[Celery]",
+      "fact_type": "technology_present",
+      "subject": "Celery",
+      "value": true
+    },
+    {
+      "evidence_refs": [
+        "technology:Django:technology.dependency_declaration:dependency_declaration:django",
+        "technology:Django:technology.file_presence:file_presence:<none>",
+        "technology:Django:technology.import_pattern:import_pattern:import django"
+      ],
+      "fact_id": "technology_present[Django]",
+      "fact_type": "technology_present",
+      "subject": "Django",
+      "value": true
+    },
+    {
+      "evidence_refs": [
+        "technology:Django:technology.dependency_declaration:dependency_declaration:django",
+        "technology:Django:technology.file_presence:file_presence:<none>",
+        "technology:Django:technology.import_pattern:import_pattern:import django"
+      ],
+      "fact_id": "technology_version[Django]",
+      "fact_type": "technology_version",
+      "subject": "Django",
+      "value": "Django==5.2.10"
+    },
+    {
+      "evidence_refs": [
+        "technology:Django DB URL config:technology.dependency_declaration:dependency_declaration:dj-database-url"
+      ],
+      "fact_id": "technology_present[Django DB URL config]",
+      "fact_type": "technology_present",
+      "subject": "Django DB URL config",
+      "value": true
+    },
+    {
+      "evidence_refs": [
+        "technology:Gunicorn:technology.dependency_declaration:dependency_declaration:gunicorn"
+      ],
+      "fact_id": "technology_present[Gunicorn]",
+      "fact_type": "technology_present",
+      "subject": "Gunicorn",
+      "value": true
+    },
+    {
+      "evidence_refs": [
+        "technology:Gunicorn:technology.dependency_declaration:dependency_declaration:gunicorn"
+      ],
+      "fact_id": "technology_version[Gunicorn]",
+      "fact_type": "technology_version",
+      "subject": "Gunicorn",
+      "value": "gunicorn==23.0.0"
+    },
+    {
+      "evidence_refs": [
+        "technology:HTMX:technology.content_pattern:content_pattern:hx-[a-z]+"
+      ],
+      "fact_id": "technology_present[HTMX]",
+      "fact_type": "technology_present",
+      "subject": "HTMX",
+      "value": true
+    },
+    {
+      "evidence_refs": [
+        "technology:PostgreSQL/psycopg:technology.dependency_declaration:dependency_declaration:psycopg2-binary"
+      ],
+      "fact_id": "technology_present[PostgreSQL/psycopg]",
+      "fact_type": "technology_present",
+      "subject": "PostgreSQL/psycopg",
+      "value": true
+    },
+    {
+      "evidence_refs": [
+        "technology:Pytest:technology.import_pattern:import_pattern:import pytest"
+      ],
+      "fact_id": "technology_present[Pytest]",
+      "fact_type": "technology_present",
+      "subject": "Pytest",
+      "value": true
+    },
+    {
+      "evidence_refs": [
+        "technology:Redis:technology.content_pattern:content_pattern:redis",
+        "technology:Redis:technology.dependency_declaration:dependency_declaration:redis"
+      ],
+      "fact_id": "technology_present[Redis]",
+      "fact_type": "technology_present",
+      "subject": "Redis",
+      "value": true
+    },
+    {
+      "evidence_refs": [
+        "technology:Redis:technology.content_pattern:content_pattern:redis",
+        "technology:Redis:technology.dependency_declaration:dependency_declaration:redis"
+      ],
+      "fact_id": "technology_version[Redis]",
+      "fact_type": "technology_version",
+      "subject": "Redis",
+      "value": "redis>=5.0"
+    },
+    {
+      "evidence_refs": [
+        "technology:SQLite:technology.content_pattern:content_pattern:sqlite3"
+      ],
+      "fact_id": "technology_present[SQLite]",
+      "fact_type": "technology_present",
+      "subject": "SQLite",
+      "value": true
+    },
+    {
+      "evidence_refs": [
+        "technology:Tailwind CSS:technology.content_pattern:content_pattern:class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b",
+        "technology:Tailwind CSS:technology.dependency_declaration:dependency_declaration:tailwindcss"
+      ],
+      "fact_id": "technology_present[Tailwind CSS]",
+      "fact_type": "technology_present",
+      "subject": "Tailwind CSS",
+      "value": true
+    },
+    {
+      "evidence_refs": [
+        "technology:WhiteNoise:technology.dependency_declaration:dependency_declaration:whitenoise"
+      ],
+      "fact_id": "technology_present[WhiteNoise]",
+      "fact_type": "technology_present",
+      "subject": "WhiteNoise",
+      "value": true
+    },
+    {
+      "evidence_refs": [
+        "technology:WhiteNoise:technology.dependency_declaration:dependency_declaration:whitenoise"
+      ],
+      "fact_id": "technology_version[WhiteNoise]",
+      "fact_type": "technology_version",
+      "subject": "WhiteNoise",
+      "value": "whitenoise==6.8.2"
+    },
+    {
+      "evidence_refs": [
+        "dependency:requirements_file:dependency.file_parse:file_parse:<none>"
+      ],
+      "fact_id": "dependency_declared[requirements_file]",
+      "fact_type": "dependency_declared",
+      "subject": "requirements_file",
+      "value": true
+    },
+    {
+      "evidence_refs": [
+        "architecture:cyclic_dependencies:architecture.ast_import_graph:ast_import_graph:<none>"
+      ],
+      "fact_id": "architecture_cycles_present",
+      "fact_type": "architecture_cycles_present",
+      "subject": "import_graph",
+      "value": true
+    }
+  ],
+  "header": {
+    "analyzer": {
+      "name": "aips-analyzer",
+      "version": "0.1.0"
+    },
+    "phase": 2,
+    "project": {
+      "analyzed_at": "2026-09-04T18:39:18.743837+00:00",
+      "name": "freelance_pulse"
+    },
+    "schema": "aips-evidence-audit/v2",
+    "schema_version": "0.1.0",
+    "source_schema": "aips-evidence/v1"
+  },
+  "stable_groups": [
+    {
+      "display_key": "architecture:cyclic_dependencies:architecture.ast_import_graph:ast_import_graph:<none>@ast_import_graph",
+      "first_evidence_id": "E-260",
+      "notes": "Cyclic import dependencies detected",
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "ast_import_graph"
+        ]
+      },
+      "signal_type": "ast_import_graph",
+      "stable_id": "architecture:cyclic_dependencies:architecture.ast_import_graph:ast_import_graph:<none>",
+      "subject": "cyclic_dependencies",
+      "type": "architecture",
+      "value_count": 1,
+      "values": [
+        [
+          [
+            "api.settings_views",
+            "api.views",
+            "api.settings_views"
+          ]
+        ]
+      ]
+    },
+    {
+      "display_key": "dependency:requirements_file:dependency.file_parse:file_parse:<none>@requirements.txt",
+      "first_evidence_id": "E-228",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [
+          "requirements.txt"
+        ],
+        "methods": [
+          "file_parse"
+        ]
+      },
+      "signal_type": "file_parse",
+      "stable_id": "dependency:requirements_file:dependency.file_parse:file_parse:<none>",
+      "subject": "requirements_file",
+      "type": "dependency",
+      "value_count": 1,
+      "values": [
+        {
+          "count": 9,
+          "file": "requirements.txt"
+        }
+      ]
+    },
+    {
+      "display_key": "git:current_branch:git.git rev-parse --abbrev-ref HEAD:git rev-parse --abbrev-ref HEAD:<none>@git rev-parse --abbrev-ref HEAD",
+      "first_evidence_id": "E-245",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "git_rev-parse_--abbrev-ref_head"
+        ]
+      },
+      "signal_type": "git rev-parse --abbrev-ref HEAD",
+      "stable_id": "git:current_branch:git.git rev-parse --abbrev-ref HEAD:git rev-parse --abbrev-ref HEAD:<none>",
+      "subject": "current_branch",
+      "type": "git",
+      "value_count": 1,
+      "values": [
+        "master"
+      ]
+    },
+    {
+      "display_key": "git:first_commit_date:git.git log --reverse:git log --reverse:<none>@git log --reverse",
+      "first_evidence_id": "E-249",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "git_log_--reverse"
+        ]
+      },
+      "signal_type": "git log --reverse",
+      "stable_id": "git:first_commit_date:git.git log --reverse:git log --reverse:<none>",
+      "subject": "first_commit_date",
+      "type": "git",
+      "value_count": 1,
+      "values": [
+        "2026-09-02 13:32:20 +0300"
+      ]
+    },
+    {
+      "display_key": "git:head_commit:git.git log -1:git log -1:<none>@git log -1",
+      "first_evidence_id": "E-246",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "git_log_-1"
+        ]
+      },
+      "signal_type": "git log -1",
+      "stable_id": "git:head_commit:git.git log -1:git log -1:<none>",
+      "subject": "head_commit",
+      "type": "git",
+      "value_count": 1,
+      "values": [
+        {
+          "date": "2026-09-02 13:32:20 +0300",
+          "hash": "1a1411edbf27f285a16ee9db8cc05726299dcb25",
+          "message": "feat(FP-028): navigation & URL integrity audit -- fix AI menu links, pin locales in UI tests, add nav regression tests"
+        }
+      ]
+    },
+    {
+      "display_key": "repository_metric:blank_lines:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-236",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:blank_lines:repository.metric.filesystem:filesystem:<none>",
+      "subject": "blank_lines",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        5081
+      ]
+    },
+    {
+      "display_key": "repository_metric:celery_task_modules:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-257",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:celery_task_modules:repository.metric.filesystem:filesystem:<none>",
+      "subject": "celery_task_modules",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        1
+      ]
+    },
+    {
+      "display_key": "repository_metric:code_lines:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-234",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:code_lines:repository.metric.filesystem:filesystem:<none>",
+      "subject": "code_lines",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        29311
+      ]
+    },
+    {
+      "display_key": "repository_metric:comment_lines:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-235",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:comment_lines:repository.metric.filesystem:filesystem:<none>",
+      "subject": "comment_lines",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        1382
+      ]
+    },
+    {
+      "display_key": "repository_metric:css_files:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-006",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:css_files:repository.metric.filesystem:filesystem:<none>",
+      "subject": "css_files",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        1
+      ]
+    },
+    {
+      "display_key": "repository_metric:cyclic_dependencies_found:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-253",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:cyclic_dependencies_found:repository.metric.filesystem:filesystem:<none>",
+      "subject": "cyclic_dependencies_found",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        1
+      ]
+    },
+    {
+      "display_key": "repository_metric:django_apps_found_ast:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-256",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:django_apps_found_ast:repository.metric.filesystem:filesystem:<none>",
+      "subject": "django_apps_found_ast",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        5
+      ]
+    },
+    {
+      "display_key": "repository_metric:django_apps_heuristic:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-014",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:django_apps_heuristic:repository.metric.filesystem:filesystem:<none>",
+      "subject": "django_apps_heuristic",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        5
+      ]
+    },
+    {
+      "display_key": "repository_metric:git_branches:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-248",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:git_branches:repository.metric.filesystem:filesystem:<none>",
+      "subject": "git_branches",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        2
+      ]
+    },
+    {
+      "display_key": "repository_metric:git_commits:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-247",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:git_commits:repository.metric.filesystem:filesystem:<none>",
+      "subject": "git_commits",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        38
+      ]
+    },
+    {
+      "display_key": "repository_metric:git_contributors:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-250",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:git_contributors:repository.metric.filesystem:filesystem:<none>",
+      "subject": "git_contributors",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        1
+      ]
+    },
+    {
+      "display_key": "repository_metric:high_fan_in_modules:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-255",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:high_fan_in_modules:repository.metric.filesystem:filesystem:<none>",
+      "subject": "high_fan_in_modules",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        27
+      ]
+    },
+    {
+      "display_key": "repository_metric:high_fan_out_modules:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-254",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:high_fan_out_modules:repository.metric.filesystem:filesystem:<none>",
+      "subject": "high_fan_out_modules",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        2
+      ]
+    },
+    {
+      "display_key": "repository_metric:html_files:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-004",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:html_files:repository.metric.filesystem:filesystem:<none>",
+      "subject": "html_files",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        42
+      ]
+    },
+    {
+      "display_key": "repository_metric:html_template_files:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-005",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:html_template_files:repository.metric.filesystem:filesystem:<none>",
+      "subject": "html_template_files",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        0
+      ]
+    },
+    {
+      "display_key": "repository_metric:js_files:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-007",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:js_files:repository.metric.filesystem:filesystem:<none>",
+      "subject": "js_files",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        2
+      ]
+    },
+    {
+      "display_key": "repository_metric:json_files:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-008",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:json_files:repository.metric.filesystem:filesystem:<none>",
+      "subject": "json_files",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        31
+      ]
+    },
+    {
+      "display_key": "repository_metric:loc_css:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-242",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:loc_css:repository.metric.filesystem:filesystem:<none>",
+      "subject": "loc_css",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        5
+      ]
+    },
+    {
+      "display_key": "repository_metric:loc_html:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-244",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:loc_html:repository.metric.filesystem:filesystem:<none>",
+      "subject": "loc_html",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        3611
+      ]
+    },
+    {
+      "display_key": "repository_metric:loc_javascript:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-243",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:loc_javascript:repository.metric.filesystem:filesystem:<none>",
+      "subject": "loc_javascript",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        33
+      ]
+    },
+    {
+      "display_key": "repository_metric:loc_python:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-241",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:loc_python:repository.metric.filesystem:filesystem:<none>",
+      "subject": "loc_python",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        32125
+      ]
+    },
+    {
+      "display_key": "repository_metric:markdown_files:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-011",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:markdown_files:repository.metric.filesystem:filesystem:<none>",
+      "subject": "markdown_files",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        151
+      ]
+    },
+    {
+      "display_key": "repository_metric:migration_directories:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-013",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:migration_directories:repository.metric.filesystem:filesystem:<none>",
+      "subject": "migration_directories",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        5
+      ]
+    },
+    {
+      "display_key": "repository_metric:migration_files:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-240",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:migration_files:repository.metric.filesystem:filesystem:<none>",
+      "subject": "migration_files",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        29
+      ]
+    },
+    {
+      "display_key": "repository_metric:model_modules:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-258",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:model_modules:repository.metric.filesystem:filesystem:<none>",
+      "subject": "model_modules",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        8
+      ]
+    },
+    {
+      "display_key": "repository_metric:node_dev_deps:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-232",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:node_dev_deps:repository.metric.filesystem:filesystem:<none>",
+      "subject": "node_dev_deps",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        3
+      ]
+    },
+    {
+      "display_key": "repository_metric:node_production_deps:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-231",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:node_production_deps:repository.metric.filesystem:filesystem:<none>",
+      "subject": "node_production_deps",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        0
+      ]
+    },
+    {
+      "display_key": "repository_metric:python_dev_deps:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-230",
+      "notes": "Count of dev Python dependencies",
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:python_dev_deps:repository.metric.filesystem:filesystem:<none>",
+      "subject": "python_dev_deps",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        0
+      ]
+    },
+    {
+      "display_key": "repository_metric:python_files:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-003",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:python_files:repository.metric.filesystem:filesystem:<none>",
+      "subject": "python_files",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        209
+      ]
+    },
+    {
+      "display_key": "repository_metric:python_modules:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-238",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:python_modules:repository.metric.filesystem:filesystem:<none>",
+      "subject": "python_modules",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        202
+      ]
+    },
+    {
+      "display_key": "repository_metric:python_modules_parsed:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-251",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:python_modules_parsed:repository.metric.filesystem:filesystem:<none>",
+      "subject": "python_modules_parsed",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        182
+      ]
+    },
+    {
+      "display_key": "repository_metric:python_modules_with_parse_errors:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-252",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:python_modules_with_parse_errors:repository.metric.filesystem:filesystem:<none>",
+      "subject": "python_modules_with_parse_errors",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        1
+      ]
+    },
+    {
+      "display_key": "repository_metric:python_packages:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-237",
+      "notes": "Count of __init__.py files",
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:python_packages:repository.metric.filesystem:filesystem:<none>",
+      "subject": "python_packages",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        21
+      ]
+    },
+    {
+      "display_key": "repository_metric:python_production_deps:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-229",
+      "notes": "Count of production Python dependencies",
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:python_production_deps:repository.metric.filesystem:filesystem:<none>",
+      "subject": "python_production_deps",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        9
+      ]
+    },
+    {
+      "display_key": "repository_metric:sql_files:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-010",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:sql_files:repository.metric.filesystem:filesystem:<none>",
+      "subject": "sql_files",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        0
+      ]
+    },
+    {
+      "display_key": "repository_metric:test_files:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-012",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:test_files:repository.metric.filesystem:filesystem:<none>",
+      "subject": "test_files",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        74
+      ]
+    },
+    {
+      "display_key": "repository_metric:test_files_loc:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-239",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:test_files_loc:repository.metric.filesystem:filesystem:<none>",
+      "subject": "test_files_loc",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        74
+      ]
+    },
+    {
+      "display_key": "repository_metric:total_directories:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-002",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:total_directories:repository.metric.filesystem:filesystem:<none>",
+      "subject": "total_directories",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        56
+      ]
+    },
+    {
+      "display_key": "repository_metric:total_files:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-001",
+      "notes": "Excluding: *.egg-info, .cache, .eggs, .env, .git, .mypy_cache, .pytest_cache, .ruff_cache...",
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:total_files:repository.metric.filesystem:filesystem:<none>",
+      "subject": "total_files",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        484
+      ]
+    },
+    {
+      "display_key": "repository_metric:total_loc:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-233",
+      "notes": "Total lines including blank/comments",
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:total_loc:repository.metric.filesystem:filesystem:<none>",
+      "subject": "total_loc",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        35774
+      ]
+    },
+    {
+      "display_key": "repository_metric:view_modules:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-259",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:view_modules:repository.metric.filesystem:filesystem:<none>",
+      "subject": "view_modules",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        1
+      ]
+    },
+    {
+      "display_key": "repository_metric:yaml_files:repository.metric.filesystem:filesystem:<none>@filesystem",
+      "first_evidence_id": "E-009",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [],
+        "methods": [
+          "filesystem"
+        ]
+      },
+      "signal_type": "filesystem",
+      "stable_id": "repository_metric:yaml_files:repository.metric.filesystem:filesystem:<none>",
+      "subject": "yaml_files",
+      "type": "repository_metric",
+      "value_count": 1,
+      "values": [
+        9
+      ]
+    },
+    {
+      "display_key": "technology:Alpine.js:technology.content_pattern:content_pattern:x-[a-z]+\\s*=|alpine\\.js@templates/base.html",
+      "first_evidence_id": "E-169",
+      "notes": null,
+      "observation_count": 9,
+      "provenance": {
+        "files": [
+          "templates/base.html",
+          "templates/components/navbar.html",
+          "templates/partials/ai_availability.html",
+          "templates/partials/job_description.html",
+          "templates/partials/job_detail.html",
+          "templates/partials/jobs_list.html",
+          "templates/partials/project_description.html",
+          "templates/partials/project_detail.html",
+          "templates/partials/project_scope_checklist.html"
+        ],
+        "methods": [
+          "content_pattern"
+        ]
+      },
+      "signal_type": "content_pattern",
+      "stable_id": "technology:Alpine.js:technology.content_pattern:content_pattern:x-[a-z]+\\s*=|alpine\\.js",
+      "subject": "Alpine.js",
+      "type": "technology",
+      "value_count": 9,
+      "values": [
+        "Pattern 'x-[a-z]+\\s*=|Alpine\\.js' matched in templates/base.html",
+        "Pattern 'x-[a-z]+\\s*=|Alpine\\.js' matched in templates/components/navbar.html",
+        "Pattern 'x-[a-z]+\\s*=|Alpine\\.js' matched in templates/partials/ai_availability.html",
+        "Pattern 'x-[a-z]+\\s*=|Alpine\\.js' matched in templates/partials/jobs_list.html",
+        "Pattern 'x-[a-z]+\\s*=|Alpine\\.js' matched in templates/partials/job_description.html",
+        "Pattern 'x-[a-z]+\\s*=|Alpine\\.js' matched in templates/partials/job_detail.html",
+        "Pattern 'x-[a-z]+\\s*=|Alpine\\.js' matched in templates/partials/project_description.html",
+        "Pattern 'x-[a-z]+\\s*=|Alpine\\.js' matched in templates/partials/project_detail.html",
+        "Pattern 'x-[a-z]+\\s*=|Alpine\\.js' matched in templates/partials/project_scope_checklist.html"
+      ]
+    },
+    {
+      "display_key": "technology:Bootstrap:technology.content_pattern:content_pattern:class=\"[^\"]*\\b(container|row|col-|btn|navbar|modal)\\b@templates/base.html",
+      "first_evidence_id": "E-170",
+      "notes": null,
+      "observation_count": 10,
+      "provenance": {
+        "files": [
+          "templates/base.html",
+          "templates/components/navbar.html",
+          "templates/partials/dashboard.html",
+          "templates/partials/index.html",
+          "templates/partials/job_detail.html",
+          "templates/partials/jobs_inbox.html",
+          "templates/partials/jobs_list.html",
+          "templates/partials/project_detail.html",
+          "templates/partials/projects.html",
+          "templates/partials/proposals.html"
+        ],
+        "methods": [
+          "content_pattern"
+        ]
+      },
+      "signal_type": "content_pattern",
+      "stable_id": "technology:Bootstrap:technology.content_pattern:content_pattern:class=\"[^\"]*\\b(container|row|col-|btn|navbar|modal)\\b",
+      "subject": "Bootstrap",
+      "type": "technology",
+      "value_count": 10,
+      "values": [
+        "Pattern 'class=\"[^\"]*\\b(container|row|col-|btn|navbar|modal)\\b' matched in templates/base.html",
+        "Pattern 'class=\"[^\"]*\\b(container|row|col-|btn|navbar|modal)\\b' matched in templates/components/navbar.html",
+        "Pattern 'class=\"[^\"]*\\b(container|row|col-|btn|navbar|modal)\\b' matched in templates/partials/dashboard.html",
+        "Pattern 'class=\"[^\"]*\\b(container|row|col-|btn|navbar|modal)\\b' matched in templates/partials/index.html",
+        "Pattern 'class=\"[^\"]*\\b(container|row|col-|btn|navbar|modal)\\b' matched in templates/partials/jobs_inbox.html",
+        "Pattern 'class=\"[^\"]*\\b(container|row|col-|btn|navbar|modal)\\b' matched in templates/partials/jobs_list.html",
+        "Pattern 'class=\"[^\"]*\\b(container|row|col-|btn|navbar|modal)\\b' matched in templates/partials/job_detail.html",
+        "Pattern 'class=\"[^\"]*\\b(container|row|col-|btn|navbar|modal)\\b' matched in templates/partials/projects.html",
+        "Pattern 'class=\"[^\"]*\\b(container|row|col-|btn|navbar|modal)\\b' matched in templates/partials/project_detail.html",
+        "Pattern 'class=\"[^\"]*\\b(container|row|col-|btn|navbar|modal)\\b' matched in templates/partials/proposals.html"
+      ]
+    },
+    {
+      "display_key": "technology:Celery:technology.content_pattern:content_pattern:celery@config/settings.py",
+      "first_evidence_id": "E-226",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [
+          "config/settings.py"
+        ],
+        "methods": [
+          "content_pattern"
+        ]
+      },
+      "signal_type": "content_pattern",
+      "stable_id": "technology:Celery:technology.content_pattern:content_pattern:celery",
+      "subject": "Celery",
+      "type": "technology",
+      "value_count": 1,
+      "values": [
+        "'celery' referenced in settings"
+      ]
+    },
+    {
+      "display_key": "technology:Celery:technology.dependency_declaration:dependency_declaration:celery@requirements.txt",
+      "first_evidence_id": "E-021",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [
+          "requirements.txt"
+        ],
+        "methods": [
+          "dependency_declaration"
+        ]
+      },
+      "signal_type": "dependency_declaration",
+      "stable_id": "technology:Celery:technology.dependency_declaration:dependency_declaration:celery",
+      "subject": "Celery",
+      "type": "technology",
+      "value_count": 1,
+      "values": [
+        "celery[redis]>=5.3"
+      ]
+    },
+    {
+      "display_key": "technology:Celery:technology.import_pattern:import_pattern:import celery@services/tasks.py",
+      "first_evidence_id": "E-123",
+      "notes": null,
+      "observation_count": 2,
+      "provenance": {
+        "files": [
+          "config/celery.py",
+          "services/tasks.py"
+        ],
+        "methods": [
+          "import_pattern"
+        ]
+      },
+      "signal_type": "import_pattern",
+      "stable_id": "technology:Celery:technology.import_pattern:import_pattern:import celery",
+      "subject": "Celery",
+      "type": "technology",
+      "value_count": 1,
+      "values": [
+        "import celery"
+      ]
+    },
+    {
+      "display_key": "technology:Django DB URL config:technology.dependency_declaration:dependency_declaration:dj-database-url@requirements.txt",
+      "first_evidence_id": "E-019",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [
+          "requirements.txt"
+        ],
+        "methods": [
+          "dependency_declaration"
+        ]
+      },
+      "signal_type": "dependency_declaration",
+      "stable_id": "technology:Django DB URL config:technology.dependency_declaration:dependency_declaration:dj-database-url",
+      "subject": "Django DB URL config",
+      "type": "technology",
+      "value_count": 1,
+      "values": [
+        "dj-database-url"
+      ]
+    },
+    {
+      "display_key": "technology:Django:technology.dependency_declaration:dependency_declaration:django@requirements.txt",
+      "first_evidence_id": "E-016",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [
+          "requirements.txt"
+        ],
+        "methods": [
+          "dependency_declaration"
+        ]
+      },
+      "signal_type": "dependency_declaration",
+      "stable_id": "technology:Django:technology.dependency_declaration:dependency_declaration:django",
+      "subject": "Django",
+      "type": "technology",
+      "value_count": 1,
+      "values": [
+        "Django==5.2.10"
+      ]
+    },
+    {
+      "display_key": "technology:Django:technology.file_presence:file_presence:<none>@manage.py",
+      "first_evidence_id": "E-015",
+      "notes": "manage.py is a strong indicator of a Django project",
+      "observation_count": 2,
+      "provenance": {
+        "files": [
+          "manage.py"
+        ],
+        "methods": [
+          "file_presence"
+        ]
+      },
+      "signal_type": "file_presence",
+      "stable_id": "technology:Django:technology.file_presence:file_presence:<none>",
+      "subject": "Django",
+      "type": "technology",
+      "value_count": 2,
+      "values": [
+        "manage.py present",
+        "manage.py present at project root"
+      ]
+    },
+    {
+      "display_key": "technology:Django:technology.import_pattern:import_pattern:import django@services/evaluation/migrations/0001_initial.py",
+      "first_evidence_id": "E-024",
+      "notes": null,
+      "observation_count": 132,
+      "provenance": {
+        "files": [
+          "api/forms.py",
+          "api/settings_views.py",
+          "api/templatetags/fp040_extras.py",
+          "api/test_i18n.py",
+          "api/test_input_translation.py",
+          "api/test_navigation_fp028.py",
+          "api/test_payment_api.py",
+          "api/test_payment_ui.py",
+          "api/test_translate.py",
+          "api/test_translate_ui.py",
+          "api/test_views.py",
+          "api/utils/cache.py",
+          "api/views.py",
+          "audit_navigation.py",
+          "config/asgi.py",
+          "config/urls.py",
+          "config/wsgi.py",
+          "conftest.py",
+          "core/admin.py",
+          "core/ai_models.py",
+          "core/apps.py",
+          "core/management/commands/refresh_ai_availability.py",
+          "core/migrations/0001_initial.py",
+          "core/migrations/0002_project_budget_project_created_at_and_more.py",
+          "core/migrations/0003_proposal_status.py",
+          "core/migrations/0004_proposal_is_auto.py",
+          "core/migrations/0005_aiusageevent.py",
+          "core/migrations/0006_proposal_duration_ms_proposal_generation_count_and_more.py",
+          "core/migrations/0007_freelancerprofile.py",
+          "core/migrations/0008_project_is_scope_confirmed_project_scope_params.py",
+          "core/migrations/0009_project_detection_method_project_source_language.py",
+          "core/migrations/0010_pulseevent_event_type_job_selected.py",
+          "core/migrations/0011_alter_aiusageevent_operation.py",
+          "core/migrations/0012_activeaimodel.py",
+          "core/migrations/0013_aiavailabilitysnapshot.py",
+          "core/migrations/0014_projectdescriptiontranslation.py",
+          "core/migrations/0015_alter_projectdescriptiontranslation_id.py",
+          "core/models.py",
+          "core/services.py",
+          "core/signals.py",
+          "core/tests/test_ai_usage_event.py",
+          "core/tests/test_pipeline.py",
+          "core/tests/test_scope_extraction.py",
+          "estimation/apps.py",
+          "estimation/migrations/0001_initial.py",
+          "estimation/models.py",
+          "estimation/services.py",
+          "manage.py",
+          "marketplace/apps.py",
+          "marketplace/forms.py",
+          "marketplace/management/commands/seed_marketplace_jobs.py",
+          "marketplace/management/commands/seed_multilingual_jobs.py",
+          "marketplace/migrations/0001_initial.py",
+          "marketplace/migrations/0002_marketplacejob_description_original_and_more.py",
+          "marketplace/migrations/0003_alter_marketplacejob_source.py",
+          "marketplace/migrations/0004_alter_marketplacejob_source.py",
+          "marketplace/migrations/0005_marketplacejobdescriptiontranslation.py",
+          "marketplace/migrations/0006_alter_marketplacejobdescriptiontranslation_provider.py",
+          "marketplace/models.py",
+          "marketplace/services.py",
+          "marketplace/tests/test_description_translation.py",
+          "marketplace/tests/test_description_translation_views.py",
+          "marketplace/tests/test_filters_ux.py",
+          "marketplace/tests/test_fp021_provider_contract.py",
+          "marketplace/tests/test_fp023_weblancer_second_provider.py",
+          "marketplace/tests/test_fp024_provider_registry.py",
+          "marketplace/tests/test_fp027_himalayas.py",
+          "marketplace/tests/test_fp033_profile.py",
+          "marketplace/tests/test_fp034_jobs_preferences.py",
+          "marketplace/tests/test_fp035_final_verification.py",
+          "marketplace/tests/test_fp035_interface_preferences.py",
+          "marketplace/tests/test_fp035_verification_only.py",
+          "marketplace/tests/test_fp036_integrations.py",
+          "marketplace/tests/test_fp037_notifications.py",
+          "marketplace/tests/test_fp038_security.py",
+          "marketplace/tests/test_fp039_ai_preferences.py",
+          "marketplace/tests/test_fp039b_ai_enforcement.py",
+          "marketplace/tests/test_fp040_settings_ux_marketplace.py",
+          "marketplace/tests/test_import.py",
+          "marketplace/tests/test_pagination.py",
+          "marketplace/tests/test_project_description_translation.py",
+          "marketplace/tests/test_provider.py",
+          "marketplace/tests/test_provider_api.py",
+          "marketplace/tests/test_selection.py",
+          "marketplace/tests/test_settings_center.py",
+          "marketplace/tests/test_settings_center_protected.py",
+          "marketplace/tests/test_translation_extension.py",
+          "marketplace/tests/test_views.py",
+          "marketplace/translation_languages.py",
+          "run_fp032_checks.py",
+          "scratch/_fp026_final.py",
+          "scratch/load_fp_benchmark.py",
+          "scratch/run_fp_benchmark.py",
+          "services/ai_availability.py",
+          "services/ai_cost_forecasting/apps.py",
+          "services/ai_cost_forecasting/migrations/0001_initial.py",
+          "services/ai_cost_forecasting/models.py",
+          "services/ai_health.py",
+          "services/ai_provider.py",
+          "services/ai_service.py",
+          "services/evaluation/apps.py",
+          "services/evaluation/migrations/0001_initial.py",
+          "services/evaluation/models.py",
+          "services/evaluation/tests/test_evaluation.py",
+          "services/marketplaces/himalayas.py",
+          "services/marketplaces/upwork.py",
+          "services/prompt_manager.py",
+          "services/proposal_pipeline.py",
+          "services/provider_factory.py",
+          "services/test_ai_availability.py",
+          "services/test_ai_availability_lifecycle.py",
+          "services/test_ai_health.py",
+          "services/test_ai_registry.py",
+          "services/test_ai_runtime_routing.py",
+          "services/test_ai_service.py",
+          "services/test_gemini_provider.py",
+          "services/test_language_service.py",
+          "services/test_openrouter_provider.py",
+          "services/test_openrouter_usage.py",
+          "services/test_orchestration_integration.py",
+          "services/test_payment_integration.py",
+          "services/test_pipeline.py",
+          "services/test_project_orchestrator.py",
+          "services/test_prompt_manager.py",
+          "services/test_provider_config_isolation.py",
+          "services/test_provider_factory.py",
+          "services/test_tasks.py",
+          "services/test_telemetry.py",
+          "services/test_usage.py",
+          "smoke_gemini.py",
+          "smoke_test.py",
+          "test_real_ai.py"
+        ],
+        "methods": [
+          "import_pattern"
+        ]
+      },
+      "signal_type": "import_pattern",
+      "stable_id": "technology:Django:technology.import_pattern:import_pattern:import django",
+      "subject": "Django",
+      "type": "technology",
+      "value_count": 18,
+      "values": [
+        "import django.db.models.deletion",
+        "import django.test",
+        "import django.core.cache",
+        "import django",
+        "import django.db",
+        "import django.core.wsgi",
+        "import django.conf",
+        "import django.core.management.base",
+        "import django.contrib",
+        "import django.core.asgi",
+        "import django.shortcuts",
+        "import django.db.models.signals",
+        "import django.urls",
+        "import django.core.exceptions",
+        "import django.apps",
+        "import django.core.management",
+        "import django.contrib.auth",
+        "import django.db.models"
+      ]
+    },
+    {
+      "display_key": "technology:Gunicorn:technology.dependency_declaration:dependency_declaration:gunicorn@requirements.txt",
+      "first_evidence_id": "E-017",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [
+          "requirements.txt"
+        ],
+        "methods": [
+          "dependency_declaration"
+        ]
+      },
+      "signal_type": "dependency_declaration",
+      "stable_id": "technology:Gunicorn:technology.dependency_declaration:dependency_declaration:gunicorn",
+      "subject": "Gunicorn",
+      "type": "technology",
+      "value_count": 1,
+      "values": [
+        "gunicorn==23.0.0"
+      ]
+    },
+    {
+      "display_key": "technology:HTMX:technology.content_pattern:content_pattern:hx-[a-z]+@templates/base.html",
+      "first_evidence_id": "E-168",
+      "notes": null,
+      "observation_count": 9,
+      "provenance": {
+        "files": [
+          "templates/base.html",
+          "templates/components/navbar.html",
+          "templates/partials/ai_availability.html",
+          "templates/partials/job_description.html",
+          "templates/partials/job_detail.html",
+          "templates/partials/jobs_list.html",
+          "templates/partials/project_description.html",
+          "templates/partials/project_detail.html",
+          "templates/partials/project_scope_checklist.html"
+        ],
+        "methods": [
+          "content_pattern"
+        ]
+      },
+      "signal_type": "content_pattern",
+      "stable_id": "technology:HTMX:technology.content_pattern:content_pattern:hx-[a-z]+",
+      "subject": "HTMX",
+      "type": "technology",
+      "value_count": 9,
+      "values": [
+        "Pattern 'hx-[a-z]+' matched in templates/base.html",
+        "Pattern 'hx-[a-z]+' matched in templates/components/navbar.html",
+        "Pattern 'hx-[a-z]+' matched in templates/partials/ai_availability.html",
+        "Pattern 'hx-[a-z]+' matched in templates/partials/jobs_list.html",
+        "Pattern 'hx-[a-z]+' matched in templates/partials/job_description.html",
+        "Pattern 'hx-[a-z]+' matched in templates/partials/job_detail.html",
+        "Pattern 'hx-[a-z]+' matched in templates/partials/project_description.html",
+        "Pattern 'hx-[a-z]+' matched in templates/partials/project_detail.html",
+        "Pattern 'hx-[a-z]+' matched in templates/partials/project_scope_checklist.html"
+      ]
+    },
+    {
+      "display_key": "technology:PostgreSQL/psycopg:technology.dependency_declaration:dependency_declaration:psycopg2-binary@requirements.txt",
+      "first_evidence_id": "E-020",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [
+          "requirements.txt"
+        ],
+        "methods": [
+          "dependency_declaration"
+        ]
+      },
+      "signal_type": "dependency_declaration",
+      "stable_id": "technology:PostgreSQL/psycopg:technology.dependency_declaration:dependency_declaration:psycopg2-binary",
+      "subject": "PostgreSQL/psycopg",
+      "type": "technology",
+      "value_count": 1,
+      "values": [
+        "psycopg2-binary"
+      ]
+    },
+    {
+      "display_key": "technology:Pytest:technology.import_pattern:import_pattern:import pytest@estimation/tests/test_service.py",
+      "first_evidence_id": "E-025",
+      "notes": null,
+      "observation_count": 10,
+      "provenance": {
+        "files": [
+          "core/tests/test_scope_extraction.py",
+          "estimation/tests/test_mapper.py",
+          "estimation/tests/test_service.py",
+          "services/ai_cost_forecasting/tests/test_calculator.py",
+          "services/ai_cost_forecasting/tests/test_contract_alignment.py",
+          "services/ai_cost_forecasting/tests/test_contracts.py",
+          "services/ai_cost_forecasting/tests/test_persistence.py",
+          "services/ai_cost_forecasting/tests/test_profile_builder.py",
+          "services/ai_cost_forecasting/tests/test_registry.py",
+          "services/test_payment_plans.py"
+        ],
+        "methods": [
+          "import_pattern"
+        ]
+      },
+      "signal_type": "import_pattern",
+      "stable_id": "technology:Pytest:technology.import_pattern:import_pattern:import pytest",
+      "subject": "Pytest",
+      "type": "technology",
+      "value_count": 1,
+      "values": [
+        "import pytest"
+      ]
+    },
+    {
+      "display_key": "technology:Redis:technology.content_pattern:content_pattern:redis@config/settings.py",
+      "first_evidence_id": "E-227",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [
+          "config/settings.py"
+        ],
+        "methods": [
+          "content_pattern"
+        ]
+      },
+      "signal_type": "content_pattern",
+      "stable_id": "technology:Redis:technology.content_pattern:content_pattern:redis",
+      "subject": "Redis",
+      "type": "technology",
+      "value_count": 1,
+      "values": [
+        "Redis URL or backend referenced in settings"
+      ]
+    },
+    {
+      "display_key": "technology:Redis:technology.dependency_declaration:dependency_declaration:redis@requirements.txt",
+      "first_evidence_id": "E-022",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [
+          "requirements.txt"
+        ],
+        "methods": [
+          "dependency_declaration"
+        ]
+      },
+      "signal_type": "dependency_declaration",
+      "stable_id": "technology:Redis:technology.dependency_declaration:dependency_declaration:redis",
+      "subject": "Redis",
+      "type": "technology",
+      "value_count": 1,
+      "values": [
+        "redis>=5.0"
+      ]
+    },
+    {
+      "display_key": "technology:SQLite:technology.content_pattern:content_pattern:sqlite3@config/settings.py",
+      "first_evidence_id": "E-225",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [
+          "config/settings.py"
+        ],
+        "methods": [
+          "content_pattern"
+        ]
+      },
+      "signal_type": "content_pattern",
+      "stable_id": "technology:SQLite:technology.content_pattern:content_pattern:sqlite3",
+      "subject": "SQLite",
+      "type": "technology",
+      "value_count": 1,
+      "values": [
+        "Pattern 'sqlite3' found in settings"
+      ]
+    },
+    {
+      "display_key": "technology:Tailwind CSS:technology.content_pattern:content_pattern:class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b@templates/base.html",
+      "first_evidence_id": "E-171",
+      "notes": null,
+      "observation_count": 28,
+      "provenance": {
+        "files": [
+          "templates/base.html",
+          "templates/components/button.html",
+          "templates/components/card.html",
+          "templates/components/navbar.html",
+          "templates/components/proposal_card.html",
+          "templates/components/settings_sidebar.html",
+          "templates/components/sidebar.html",
+          "templates/components/stat_card.html",
+          "templates/pages/about.html",
+          "templates/pages/categories.html",
+          "templates/pages/contacts.html",
+          "templates/partials/ai_availability.html",
+          "templates/partials/ai_runtime.html",
+          "templates/partials/dashboard.html",
+          "templates/partials/index.html",
+          "templates/partials/job_description.html",
+          "templates/partials/job_detail.html",
+          "templates/partials/job_form.html",
+          "templates/partials/jobs_inbox.html",
+          "templates/partials/jobs_list.html",
+          "templates/partials/project_create.html",
+          "templates/partials/project_description.html",
+          "templates/partials/project_detail.html",
+          "templates/partials/project_scope_checklist.html",
+          "templates/partials/projects.html",
+          "templates/partials/proposal_edit.html",
+          "templates/partials/proposals.html",
+          "templates/partials/settings.html"
+        ],
+        "methods": [
+          "content_pattern"
+        ]
+      },
+      "signal_type": "content_pattern",
+      "stable_id": "technology:Tailwind CSS:technology.content_pattern:content_pattern:class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b",
+      "subject": "Tailwind CSS",
+      "type": "technology",
+      "value_count": 28,
+      "values": [
+        "Pattern 'class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b' matched in templates/base.html",
+        "Pattern 'class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b' matched in templates/components/button.html",
+        "Pattern 'class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b' matched in templates/components/card.html",
+        "Pattern 'class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b' matched in templates/components/navbar.html",
+        "Pattern 'class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b' matched in templates/components/proposal_card.html",
+        "Pattern 'class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b' matched in templates/components/settings_sidebar.html",
+        "Pattern 'class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b' matched in templates/components/sidebar.html",
+        "Pattern 'class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b' matched in templates/components/stat_card.html",
+        "Pattern 'class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b' matched in templates/pages/about.html",
+        "Pattern 'class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b' matched in templates/pages/categories.html",
+        "Pattern 'class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b' matched in templates/pages/contacts.html",
+        "Pattern 'class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b' matched in templates/partials/ai_availability.html",
+        "Pattern 'class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b' matched in templates/partials/ai_runtime.html",
+        "Pattern 'class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b' matched in templates/partials/dashboard.html",
+        "Pattern 'class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b' matched in templates/partials/index.html",
+        "Pattern 'class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b' matched in templates/partials/jobs_inbox.html",
+        "Pattern 'class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b' matched in templates/partials/jobs_list.html",
+        "Pattern 'class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b' matched in templates/partials/job_description.html",
+        "Pattern 'class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b' matched in templates/partials/job_detail.html",
+        "Pattern 'class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b' matched in templates/partials/job_form.html",
+        "Pattern 'class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b' matched in templates/partials/projects.html",
+        "Pattern 'class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b' matched in templates/partials/project_create.html",
+        "Pattern 'class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b' matched in templates/partials/project_description.html",
+        "Pattern 'class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b' matched in templates/partials/project_detail.html",
+        "Pattern 'class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b' matched in templates/partials/project_scope_checklist.html",
+        "Pattern 'class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b' matched in templates/partials/proposals.html",
+        "Pattern 'class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b' matched in templates/partials/proposal_edit.html",
+        "Pattern 'class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b' matched in templates/partials/settings.html"
+      ]
+    },
+    {
+      "display_key": "technology:Tailwind CSS:technology.dependency_declaration:dependency_declaration:tailwindcss@package.json",
+      "first_evidence_id": "E-023",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [
+          "package.json"
+        ],
+        "methods": [
+          "dependency_declaration"
+        ]
+      },
+      "signal_type": "dependency_declaration",
+      "stable_id": "technology:Tailwind CSS:technology.dependency_declaration:dependency_declaration:tailwindcss",
+      "subject": "Tailwind CSS",
+      "type": "technology",
+      "value_count": 1,
+      "values": [
+        "tailwindcss@^3.4.8"
+      ]
+    },
+    {
+      "display_key": "technology:WhiteNoise:technology.dependency_declaration:dependency_declaration:whitenoise@requirements.txt",
+      "first_evidence_id": "E-018",
+      "notes": null,
+      "observation_count": 1,
+      "provenance": {
+        "files": [
+          "requirements.txt"
+        ],
+        "methods": [
+          "dependency_declaration"
+        ]
+      },
+      "signal_type": "dependency_declaration",
+      "stable_id": "technology:WhiteNoise:technology.dependency_declaration:dependency_declaration:whitenoise",
+      "subject": "WhiteNoise",
+      "type": "technology",
+      "value_count": 1,
+      "values": [
+        "whitenoise==6.8.2"
+      ]
+    }
+  ],
+  "unknown": []
+}

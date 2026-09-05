@@ -228,7 +228,6 @@ def _discover(project_root: Path, evidence: EvidenceBuilder) -> dict:
         )
 
     return {
-        "project_root": str(project_root),
         "total_files": total_files,
         "total_directories": total_dirs,
         "files_by_type": dict(sorted(files_by_type.items(), key=lambda x: -x[1])),

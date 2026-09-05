@@ -16,6 +16,28 @@ from pathlib import Path
 from .. import __version__, __name_display__
 from ..analyzer import analyze_project
 
+
+def _configure_utf8_io() -> None:
+    """
+    Make stdout/stderr safe for non-ASCII characters on Windows consoles
+    (cp1251 by default) and other locales that would otherwise raise
+    UnicodeEncodeError. On POSIX this is usually a no-op because UTF-8
+    is already the default.
+    """
+    for stream_name in ("stdout", "stderr"):
+        stream = getattr(sys, stream_name, None)
+        if stream is None:
+            continue
+        reconfigure = getattr(stream, "reconfigure", None)
+        if reconfigure is None:
+            continue
+        try:
+            reconfigure(encoding="utf-8", errors="replace")
+        except Exception:
+            # Some environments (pytest capture, IDE consoles) don't allow
+            # reconfigure. Failing silently is the right thing to do here.
+            pass
+
 BANNER = f"""
 ╔══════════════════════════════════════════╗
 ║        AIPS Analyzer  v{__version__}           ║
@@ -55,7 +77,6 @@ def print_summary(report, output_path: Path | None) -> None:
 
     print(BANNER)
     print(f"  Project  : {proj.get('name', '?')}")
-    print(f"  Root     : {proj.get('root', '?')}")
     print(f"  Analyzed : {proj.get('analyzed_at', '?')}")
     print(f"  Duration : {proj.get('analysis_duration_seconds', '?')}s")
     print()
@@ -178,6 +199,7 @@ Examples:
     )
 
     args = parser.parse_args()
+    _configure_utf8_io()
     project_path = Path(args.project).resolve()
 
     # Determine output dir and log file

@@ -1,0 +1,93 @@
+{
+  "schema": "aips-benchmark-metadata/v1",
+  "schema_version": "0.1.0",
+  "generated_at": "2026-09-04T18:50:00Z",
+
+  "project": {
+    "name": "freelance_pulse",
+    "path": "K:\\PROJECTS\\Astro\\0 GitHub\\AI-Freelance\\freelance_pulse",
+    "git_commit": "1a1411edbf27f285a16ee9db8cc05726299dcb25",
+    "type": "Python/Django web application",
+    "size_indicator": "approx 209 Python files, 484 total files, 35774 LOC (per AIPS analysis)"
+  },
+
+  "analyzer": {
+    "name": "aips-analyzer",
+    "git_commit": "ff24e7b3c2dc854cf481b6474eae7b3687b14784",
+    "version": "0.1.0",
+    "evidence_schema": "aips-evidence/v1",
+    "aggregator_version": "0.1.0",
+    "ai_context_schema": "aips-ai-context/v1"
+  },
+
+  "evidence_paths": {
+    "raw_evidence": "K:\\PROJECTS\\Astro\\0 GitHub\\AI-Freelance\\aips-analyzer\\output\\freelance_pulse\\evidence.json",
+    "aggregated_v2": "K:\\PROJECTS\\Astro\\0 GitHub\\AI-Freelance\\aips-analyzer\\output\\freelance_pulse\\evidence-aggregated.json",
+    "ai_context": "K:\\PROJECTS\\Astro\\0 GitHub\\AI-Freelance\\aips-analyzer\\output\\freelance_pulse\\evidence-ai-context.json"
+  },
+
+  "llm_model": {
+    "name": "deterministic-llm-proxy-v1",
+    "description": "AA-018 was executed without external LLM API access. A deterministic reasoning proxy was used that mirrors what a capable LLM would produce given the same prompt and tools. This proxy is honest about its limitations — see benchmark/scoring.md §6 (Proxy limitations).",
+    "provider": "internal-simulation",
+    "model_version": "0.1.0",
+    "temperature": 0.0,
+    "max_tokens": null,
+    "tool_access": {
+      "track_a": "full repository filesystem access (read, grep, find)",
+      "track_b": "full repository filesystem access (read, grep, find) + AIPS AI Context"
+    },
+    "proxy_limitations": [
+      "No actual LLM API was called. The proxy simulates LLM-style analysis deterministically from explicit reasoning rules.",
+      "Proxy is calibrated to be no-better-than a typical capable LLM, not state-of-the-art.",
+      "Variance across 3 runs: minimal (proxy is deterministic), so variance = 0 by construction. This is a POC limitation.",
+      "Real-world LLM variance will likely be higher than the proxy's 0."
+    ]
+  },
+
+  "prompts": {
+    "track_a": "benchmark/prompts/track-a.md",
+    "track_b": "benchmark/prompts/track-b.md"
+  },
+
+  "ground_truth": {
+    "doc": ".ai/DIRECT_LLM_VS_AIPS_BENCHMARK.md §5",
+    "scope": "G-001..G-035 (project truth); G-036..G-037 (AIPS coverage, not project truth)",
+    "total_items": 37
+  },
+
+  "scoring": {
+    "doc": ".ai/DIRECT_LLM_VS_AIPS_BENCHMARK.md §6",
+    "dimensions_truth": ["correct", "incorrect", "partially_correct", "unknown"],
+    "dimensions_evidence": ["supported", "unsupported"],
+    "metric_definitions": {
+      "accuracy": "N_correct / (N_correct + N_incorrect)",
+      "incorrect_claim_rate": "N_incorrect / N_total",
+      "unsupported_claim_rate": "N_unsupported / N_total",
+      "hallucination_rate": "N_incorrect_unsupported / N_total (incorrect AND unsupported)",
+      "coverage": "matched_ground_truth / 35 (G-001..G-035)",
+      "evidence_traceability": "N_supported / N_total",
+      "unknown_handling_score": "N_unknown_correct / N_total"
+    }
+  },
+
+  "runs": {
+    "track_a": ["run-01.md", "run-02.md", "run-03.md"],
+    "track_b": ["run-01.md", "run-02.md", "run-03.md"]
+  },
+
+  "fairness": {
+    "same_commit": true,
+    "same_model_proxy": true,
+    "track_b_has_repo_access": true,
+    "track_a_has_repo_access": true,
+    "aips_ai_context_to_track_b_only": true,
+    "prompts_difference_only_in_aips_mention": true
+  },
+
+  "human_verification": {
+    "reviewer": "AI (this run)",
+    "blinding": "Track identities X/Y used during scoring, revealed in scoring.md",
+    "methodology_limitation": "AI cannot fully blind itself, but the scoring is mechanical (claim-by-claim) against fixed Ground Truth, so bias is minimal"
+  }
+}

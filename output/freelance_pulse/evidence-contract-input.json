@@ -1,0 +1,942 @@
+{
+  "duplication": {
+    "exact_duplicate_count": 0,
+    "exact_duplicate_groups": [],
+    "near_duplicate_count": 1,
+    "near_duplicate_groups": [
+      {
+        "occurrences": 2,
+        "signal_type": "file_presence",
+        "source_file": "manage.py",
+        "source_pattern": null,
+        "subject": "Django",
+        "type": "technology"
+      }
+    ],
+    "note": "exact = same (type, subject, value, source). near = same (type, subject, signal_type, source.file, source.pattern) — matches the current analyzer dedup policy."
+  },
+  "groups": [
+    {
+      "count": 1,
+      "examples": [
+        {
+          "id": "E-260",
+          "notes": "Cyclic import dependencies detected",
+          "source": {
+            "method": "ast_import_graph"
+          },
+          "subject": "cyclic_dependencies",
+          "type": "architecture",
+          "value": [
+            [
+              "api.settings_views",
+              "api.views",
+              "api.settings_views"
+            ]
+          ]
+        }
+      ],
+      "signal_types": {
+        "ast_import_graph": 1
+      },
+      "source_files": {
+        "count": 0,
+        "listed": []
+      },
+      "source_methods": {
+        "ast_import_graph": 1
+      },
+      "source_patterns_top": {},
+      "sub_groups_only_when_dense": [],
+      "subjects": {
+        "cyclic_dependencies": 1
+      },
+      "type": "architecture",
+      "value_shapes": {
+        "list[1]": 1
+      }
+    },
+    {
+      "count": 1,
+      "examples": [
+        {
+          "id": "E-228",
+          "source": {
+            "file": "requirements.txt",
+            "method": "file_parse"
+          },
+          "subject": "requirements_file",
+          "type": "dependency",
+          "value": {
+            "count": 9,
+            "file": "requirements.txt"
+          }
+        }
+      ],
+      "signal_types": {
+        "file_parse": 1
+      },
+      "source_files": {
+        "count": 1,
+        "listed": [
+          "requirements.txt"
+        ]
+      },
+      "source_methods": {
+        "file_parse": 1
+      },
+      "source_patterns_top": {},
+      "sub_groups_only_when_dense": [],
+      "subjects": {
+        "requirements_file": 1
+      },
+      "type": "dependency",
+      "value_shapes": {
+        "dict[2]": 1
+      }
+    },
+    {
+      "count": 3,
+      "examples": [
+        {
+          "id": "E-245",
+          "source": {
+            "method": "git rev-parse --abbrev-ref HEAD"
+          },
+          "subject": "current_branch",
+          "type": "git",
+          "value": "master"
+        },
+        {
+          "id": "E-249",
+          "source": {
+            "method": "git log --reverse"
+          },
+          "subject": "first_commit_date",
+          "type": "git",
+          "value": "2026-09-02 13:32:20 +0300"
+        },
+        {
+          "id": "E-246",
+          "source": {
+            "method": "git log -1"
+          },
+          "subject": "head_commit",
+          "type": "git",
+          "value": {
+            "date": "2026-09-02 13:32:20 +0300",
+            "hash": "1a1411edbf27f285a16ee9db8cc05726299dcb25",
+            "message": "feat(FP-028): navigation & URL integrity audit -- fix AI menu links, pin locales in UI tests, add nav regression tests"
+          }
+        }
+      ],
+      "signal_types": {
+        "git log --reverse": 1,
+        "git log -1": 1,
+        "git rev-parse --abbrev-ref HEAD": 1
+      },
+      "source_files": {
+        "count": 0,
+        "listed": []
+      },
+      "source_methods": {
+        "git log --reverse": 1,
+        "git log -1": 1,
+        "git rev-parse --abbrev-ref HEAD": 1
+      },
+      "source_patterns_top": {},
+      "sub_groups_only_when_dense": [],
+      "subjects": {
+        "current_branch": 1,
+        "first_commit_date": 1,
+        "head_commit": 1
+      },
+      "type": "git",
+      "value_shapes": {
+        "dict[3]": 1,
+        "string": 2
+      }
+    },
+    {
+      "count": 42,
+      "examples": [
+        {
+          "id": "E-236",
+          "source": {
+            "method": "filesystem"
+          },
+          "subject": "blank_lines",
+          "type": "repository_metric",
+          "value": 5081
+        },
+        {
+          "id": "E-257",
+          "source": {
+            "method": "filesystem"
+          },
+          "subject": "celery_task_modules",
+          "type": "repository_metric",
+          "value": 1
+        },
+        {
+          "id": "E-234",
+          "source": {
+            "method": "filesystem"
+          },
+          "subject": "code_lines",
+          "type": "repository_metric",
+          "value": 29311
+        }
+      ],
+      "signal_types": {
+        "filesystem": 42
+      },
+      "source_files": {
+        "count": 0,
+        "listed": []
+      },
+      "source_methods": {
+        "filesystem": 42
+      },
+      "source_patterns_top": {},
+      "sub_groups_only_when_dense": [],
+      "subjects": {
+        "blank_lines": 1,
+        "celery_task_modules": 1,
+        "code_lines": 1,
+        "comment_lines": 1,
+        "css_files": 1,
+        "cyclic_dependencies_found": 1,
+        "django_apps_found_ast": 1,
+        "django_apps_heuristic": 1,
+        "git_branches": 1,
+        "git_commits": 1,
+        "git_contributors": 1,
+        "high_fan_in_modules": 1,
+        "high_fan_out_modules": 1,
+        "html_files": 1,
+        "html_template_files": 1,
+        "js_files": 1,
+        "json_files": 1,
+        "loc_css": 1,
+        "loc_html": 1,
+        "loc_javascript": 1,
+        "loc_python": 1,
+        "markdown_files": 1,
+        "migration_directories": 1,
+        "migration_files": 1,
+        "model_modules": 1,
+        "node_dev_deps": 1,
+        "node_production_deps": 1,
+        "python_dev_deps": 1,
+        "python_files": 1,
+        "python_modules": 1,
+        "python_modules_parsed": 1,
+        "python_modules_with_parse_errors": 1,
+        "python_packages": 1,
+        "python_production_deps": 1,
+        "sql_files": 1,
+        "test_files": 1,
+        "test_files_loc": 1,
+        "total_directories": 1,
+        "total_files": 1,
+        "total_loc": 1,
+        "view_modules": 1,
+        "yaml_files": 1
+      },
+      "type": "repository_metric",
+      "value_shapes": {
+        "int": 42
+      }
+    },
+    {
+      "count": 213,
+      "examples": [
+        {
+          "id": "E-169",
+          "source": {
+            "file": "templates/base.html",
+            "method": "content_pattern",
+            "pattern": "x-[a-z]+\\s*=|Alpine\\.js"
+          },
+          "subject": "Alpine.js",
+          "type": "technology",
+          "value": "Pattern 'x-[a-z]+\\s*=|Alpine\\.js' matched in templates/base.html"
+        },
+        {
+          "id": "E-175",
+          "source": {
+            "file": "templates/components/navbar.html",
+            "method": "content_pattern",
+            "pattern": "x-[a-z]+\\s*=|Alpine\\.js"
+          },
+          "subject": "Alpine.js",
+          "type": "technology",
+          "value": "Pattern 'x-[a-z]+\\s*=|Alpine\\.js' matched in templates/components/navbar.html"
+        },
+        {
+          "id": "E-186",
+          "source": {
+            "file": "templates/partials/ai_availability.html",
+            "method": "content_pattern",
+            "pattern": "x-[a-z]+\\s*=|Alpine\\.js"
+          },
+          "subject": "Alpine.js",
+          "type": "technology",
+          "value": "Pattern 'x-[a-z]+\\s*=|Alpine\\.js' matched in templates/partials/ai_availability.html"
+        }
+      ],
+      "signal_types": {
+        "content_pattern": 59,
+        "dependency_declaration": 8,
+        "file_presence": 2,
+        "import_pattern": 144
+      },
+      "source_files": {
+        "count": 174,
+        "listed": [
+          "api/forms.py",
+          "api/settings_views.py",
+          "api/templatetags/fp040_extras.py",
+          "api/test_i18n.py",
+          "api/test_input_translation.py",
+          "api/test_navigation_fp028.py",
+          "api/test_payment_api.py",
+          "api/test_payment_ui.py",
+          "api/test_translate.py",
+          "api/test_translate_ui.py"
+        ],
+        "more": "...and 164 more files"
+      },
+      "source_methods": {
+        "content_pattern": 59,
+        "dependency_declaration": 8,
+        "file_presence": 2,
+        "import_pattern": 144
+      },
+      "source_patterns_top": {
+        "celery": 2,
+        "class=\"[^\"]*\\b(container|row|col-|btn|navbar|modal)\\b": 10,
+        "class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b": 28,
+        "dj-database-url": 1,
+        "hx-[a-z]+": 9,
+        "import celery": 2,
+        "import django": 132,
+        "import pytest": 10,
+        "redis": 2,
+        "x-[a-z]+\\s*=|Alpine\\.js": 9
+      },
+      "sub_groups_only_when_dense": [
+        {
+          "count": 9,
+          "examples": [
+            {
+              "id": "E-169",
+              "source": {
+                "file": "templates/base.html",
+                "method": "content_pattern",
+                "pattern": "x-[a-z]+\\s*=|Alpine\\.js"
+              },
+              "subject": "Alpine.js",
+              "type": "technology",
+              "value": "Pattern 'x-[a-z]+\\s*=|Alpine\\.js' matched in templates/base.html"
+            },
+            {
+              "id": "E-175",
+              "source": {
+                "file": "templates/components/navbar.html",
+                "method": "content_pattern",
+                "pattern": "x-[a-z]+\\s*=|Alpine\\.js"
+              },
+              "subject": "Alpine.js",
+              "type": "technology",
+              "value": "Pattern 'x-[a-z]+\\s*=|Alpine\\.js' matched in templates/components/navbar.html"
+            },
+            {
+              "id": "E-186",
+              "source": {
+                "file": "templates/partials/ai_availability.html",
+                "method": "content_pattern",
+                "pattern": "x-[a-z]+\\s*=|Alpine\\.js"
+              },
+              "subject": "Alpine.js",
+              "type": "technology",
+              "value": "Pattern 'x-[a-z]+\\s*=|Alpine\\.js' matched in templates/partials/ai_availability.html"
+            }
+          ],
+          "source_files": {
+            "count": 9,
+            "listed": [
+              "templates/base.html",
+              "templates/components/navbar.html",
+              "templates/partials/ai_availability.html",
+              "templates/partials/job_description.html",
+              "templates/partials/job_detail.html",
+              "templates/partials/jobs_list.html",
+              "templates/partials/project_description.html",
+              "templates/partials/project_detail.html",
+              "templates/partials/project_scope_checklist.html"
+            ]
+          },
+          "subject": "Alpine.js",
+          "value_shapes": {
+            "string": 9
+          }
+        },
+        {
+          "count": 10,
+          "examples": [
+            {
+              "id": "E-170",
+              "source": {
+                "file": "templates/base.html",
+                "method": "content_pattern",
+                "pattern": "class=\"[^\"]*\\b(container|row|col-|btn|navbar|modal)\\b"
+              },
+              "subject": "Bootstrap",
+              "type": "technology",
+              "value": "Pattern 'class=\"[^\"]*\\b(container|row|col-|btn|navbar|modal)\\b' matched in templates/base.html"
+            },
+            {
+              "id": "E-176",
+              "source": {
+                "file": "templates/components/navbar.html",
+                "method": "content_pattern",
+                "pattern": "class=\"[^\"]*\\b(container|row|col-|btn|navbar|modal)\\b"
+              },
+              "subject": "Bootstrap",
+              "type": "technology",
+              "value": "Pattern 'class=\"[^\"]*\\b(container|row|col-|btn|navbar|modal)\\b' matched in templates/components/navbar.html"
+            },
+            {
+              "id": "E-189",
+              "source": {
+                "file": "templates/partials/dashboard.html",
+                "method": "content_pattern",
+                "pattern": "class=\"[^\"]*\\b(container|row|col-|btn|navbar|modal)\\b"
+              },
+              "subject": "Bootstrap",
+              "type": "technology",
+              "value": "Pattern 'class=\"[^\"]*\\b(container|row|col-|btn|navbar|modal)\\b' matched in templates/partials/dashboard.html"
+            }
+          ],
+          "source_files": {
+            "count": 10,
+            "listed": [
+              "templates/base.html",
+              "templates/components/navbar.html",
+              "templates/partials/dashboard.html",
+              "templates/partials/index.html",
+              "templates/partials/job_detail.html",
+              "templates/partials/jobs_inbox.html",
+              "templates/partials/jobs_list.html",
+              "templates/partials/project_detail.html",
+              "templates/partials/projects.html",
+              "templates/partials/proposals.html"
+            ]
+          },
+          "subject": "Bootstrap",
+          "value_shapes": {
+            "string": 10
+          }
+        },
+        {
+          "count": 4,
+          "examples": [
+            {
+              "id": "E-145",
+              "source": {
+                "file": "config/celery.py",
+                "method": "import_pattern",
+                "pattern": "import celery"
+              },
+              "subject": "Celery",
+              "type": "technology",
+              "value": "import celery"
+            },
+            {
+              "id": "E-226",
+              "source": {
+                "file": "config/settings.py",
+                "method": "content_pattern",
+                "pattern": "celery"
+              },
+              "subject": "Celery",
+              "type": "technology",
+              "value": "'celery' referenced in settings"
+            },
+            {
+              "id": "E-021",
+              "source": {
+                "file": "requirements.txt",
+                "method": "dependency_declaration",
+                "pattern": "celery",
+                "section": "requirements"
+              },
+              "subject": "Celery",
+              "type": "technology",
+              "value": "celery[redis]>=5.3"
+            }
+          ],
+          "source_files": {
+            "count": 4,
+            "listed": [
+              "config/celery.py",
+              "config/settings.py",
+              "requirements.txt",
+              "services/tasks.py"
+            ]
+          },
+          "subject": "Celery",
+          "value_shapes": {
+            "string": 4
+          }
+        },
+        {
+          "count": 135,
+          "examples": [
+            {
+              "id": "E-144",
+              "source": {
+                "file": "api/forms.py",
+                "method": "import_pattern",
+                "pattern": "import django"
+              },
+              "subject": "Django",
+              "type": "technology",
+              "value": "import django"
+            },
+            {
+              "id": "E-117",
+              "source": {
+                "file": "api/settings_views.py",
+                "method": "import_pattern",
+                "pattern": "import django"
+              },
+              "subject": "Django",
+              "type": "technology",
+              "value": "import django.contrib"
+            },
+            {
+              "id": "E-125",
+              "source": {
+                "file": "api/templatetags/fp040_extras.py",
+                "method": "import_pattern",
+                "pattern": "import django"
+              },
+              "subject": "Django",
+              "type": "technology",
+              "value": "import django"
+            }
+          ],
+          "source_files": {
+            "count": 133,
+            "listed": [
+              "api/forms.py",
+              "api/settings_views.py",
+              "api/templatetags/fp040_extras.py",
+              "api/test_i18n.py",
+              "api/test_input_translation.py",
+              "api/test_navigation_fp028.py",
+              "api/test_payment_api.py",
+              "api/test_payment_ui.py",
+              "api/test_translate.py",
+              "api/test_translate_ui.py"
+            ],
+            "more": "...and 123 more files"
+          },
+          "subject": "Django",
+          "value_shapes": {
+            "string": 135
+          }
+        },
+        {
+          "count": 9,
+          "examples": [
+            {
+              "id": "E-168",
+              "source": {
+                "file": "templates/base.html",
+                "method": "content_pattern",
+                "pattern": "hx-[a-z]+"
+              },
+              "subject": "HTMX",
+              "type": "technology",
+              "value": "Pattern 'hx-[a-z]+' matched in templates/base.html"
+            },
+            {
+              "id": "E-174",
+              "source": {
+                "file": "templates/components/navbar.html",
+                "method": "content_pattern",
+                "pattern": "hx-[a-z]+"
+              },
+              "subject": "HTMX",
+              "type": "technology",
+              "value": "Pattern 'hx-[a-z]+' matched in templates/components/navbar.html"
+            },
+            {
+              "id": "E-185",
+              "source": {
+                "file": "templates/partials/ai_availability.html",
+                "method": "content_pattern",
+                "pattern": "hx-[a-z]+"
+              },
+              "subject": "HTMX",
+              "type": "technology",
+              "value": "Pattern 'hx-[a-z]+' matched in templates/partials/ai_availability.html"
+            }
+          ],
+          "source_files": {
+            "count": 9,
+            "listed": [
+              "templates/base.html",
+              "templates/components/navbar.html",
+              "templates/partials/ai_availability.html",
+              "templates/partials/job_description.html",
+              "templates/partials/job_detail.html",
+              "templates/partials/jobs_list.html",
+              "templates/partials/project_description.html",
+              "templates/partials/project_detail.html",
+              "templates/partials/project_scope_checklist.html"
+            ]
+          },
+          "subject": "HTMX",
+          "value_shapes": {
+            "string": 9
+          }
+        },
+        {
+          "count": 10,
+          "examples": [
+            {
+              "id": "E-086",
+              "source": {
+                "file": "core/tests/test_scope_extraction.py",
+                "method": "import_pattern",
+                "pattern": "import pytest"
+              },
+              "subject": "Pytest",
+              "type": "technology",
+              "value": "import pytest"
+            },
+            {
+              "id": "E-047",
+              "source": {
+                "file": "estimation/tests/test_mapper.py",
+                "method": "import_pattern",
+                "pattern": "import pytest"
+              },
+              "subject": "Pytest",
+              "type": "technology",
+              "value": "import pytest"
+            },
+            {
+              "id": "E-025",
+              "source": {
+                "file": "estimation/tests/test_service.py",
+                "method": "import_pattern",
+                "pattern": "import pytest"
+              },
+              "subject": "Pytest",
+              "type": "technology",
+              "value": "import pytest"
+            }
+          ],
+          "source_files": {
+            "count": 10,
+            "listed": [
+              "core/tests/test_scope_extraction.py",
+              "estimation/tests/test_mapper.py",
+              "estimation/tests/test_service.py",
+              "services/ai_cost_forecasting/tests/test_calculator.py",
+              "services/ai_cost_forecasting/tests/test_contract_alignment.py",
+              "services/ai_cost_forecasting/tests/test_contracts.py",
+              "services/ai_cost_forecasting/tests/test_persistence.py",
+              "services/ai_cost_forecasting/tests/test_profile_builder.py",
+              "services/ai_cost_forecasting/tests/test_registry.py",
+              "services/test_payment_plans.py"
+            ]
+          },
+          "subject": "Pytest",
+          "value_shapes": {
+            "string": 10
+          }
+        },
+        {
+          "count": 2,
+          "examples": [
+            {
+              "id": "E-227",
+              "source": {
+                "file": "config/settings.py",
+                "method": "content_pattern",
+                "pattern": "redis",
+                "section": "CACHES or CELERY_BROKER_URL"
+              },
+              "subject": "Redis",
+              "type": "technology",
+              "value": "Redis URL or backend referenced in settings"
+            },
+            {
+              "id": "E-022",
+              "source": {
+                "file": "requirements.txt",
+                "method": "dependency_declaration",
+                "pattern": "redis",
+                "section": "requirements"
+              },
+              "subject": "Redis",
+              "type": "technology",
+              "value": "redis>=5.0"
+            }
+          ],
+          "source_files": {
+            "count": 2,
+            "listed": [
+              "config/settings.py",
+              "requirements.txt"
+            ]
+          },
+          "subject": "Redis",
+          "value_shapes": {
+            "string": 2
+          }
+        },
+        {
+          "count": 29,
+          "examples": [
+            {
+              "id": "E-023",
+              "source": {
+                "file": "package.json",
+                "method": "dependency_declaration",
+                "pattern": "tailwindcss",
+                "section": "devDependencies"
+              },
+              "subject": "Tailwind CSS",
+              "type": "technology",
+              "value": "tailwindcss@^3.4.8"
+            },
+            {
+              "id": "E-171",
+              "source": {
+                "file": "templates/base.html",
+                "method": "content_pattern",
+                "pattern": "class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b"
+              },
+              "subject": "Tailwind CSS",
+              "type": "technology",
+              "value": "Pattern 'class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b' matched in templates/base.html"
+            },
+            {
+              "id": "E-172",
+              "source": {
+                "file": "templates/components/button.html",
+                "method": "content_pattern",
+                "pattern": "class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b"
+              },
+              "subject": "Tailwind CSS",
+              "type": "technology",
+              "value": "Pattern 'class=\"[^\"]*\\b(flex|grid|text-\\w+|bg-\\w+|p-\\d+|m-\\d+)\\b' matched in templates/components/button.html"
+            }
+          ],
+          "source_files": {
+            "count": 29,
+            "listed": [
+              "package.json",
+              "templates/base.html",
+              "templates/components/button.html",
+              "templates/components/card.html",
+              "templates/components/navbar.html",
+              "templates/components/proposal_card.html",
+              "templates/components/settings_sidebar.html",
+              "templates/components/sidebar.html",
+              "templates/components/stat_card.html",
+              "templates/pages/about.html"
+            ],
+            "more": "...and 19 more files"
+          },
+          "subject": "Tailwind CSS",
+          "value_shapes": {
+            "string": 29
+          }
+        }
+      ],
+      "subjects": {
+        "Alpine.js": 9,
+        "Bootstrap": 10,
+        "Celery": 4,
+        "Django": 135,
+        "Django DB URL config": 1,
+        "Gunicorn": 1,
+        "HTMX": 9,
+        "PostgreSQL/psycopg": 1,
+        "Pytest": 10,
+        "Redis": 2,
+        "SQLite": 1,
+        "Tailwind CSS": 29,
+        "WhiteNoise": 1
+      },
+      "type": "technology",
+      "value_shapes": {
+        "string": 213
+      }
+    }
+  ],
+  "header": {
+    "analyzer": {
+      "name": "aips-analyzer",
+      "version": "0.1.0"
+    },
+    "audit_version": "0.1.0",
+    "generated_at": "2026-09-04T18:39:18.743837+00:00",
+    "project": {
+      "analyzed_at": "2026-09-04T18:39:18.743837+00:00",
+      "evidence_items_count": 260,
+      "name": "freelance_pulse"
+    },
+    "schema": "aips-evidence-audit/v1",
+    "source_schema": "aips-evidence/v1"
+  },
+  "metrics": {
+    "by_top_level": {
+      "discovery": 36,
+      "repository": 31
+    },
+    "examples": [
+      {
+        "name": "discovery.config_flags..gitignore",
+        "value": true
+      },
+      {
+        "name": "discovery.config_flags.Dockerfile",
+        "value": false
+      },
+      {
+        "name": "discovery.config_flags.conftest.py",
+        "value": true
+      },
+      {
+        "name": "discovery.config_flags.docker-compose",
+        "value": false
+      },
+      {
+        "name": "discovery.config_flags.manage.py",
+        "value": true
+      }
+    ],
+    "total": 67
+  },
+  "section_keys": {
+    "architecture": [
+      "candidate_findings",
+      "celery_task_modules",
+      "cyclic_dependencies",
+      "django_apps",
+      "model_modules",
+      "modules_map",
+      "note",
+      "packages",
+      "parse_errors",
+      "thresholds",
+      "top_external_imports",
+      "total_modules",
+      "total_modules_in_map",
+      "url_modules",
+      "view_modules"
+    ],
+    "dependencies": [
+      "node",
+      "python",
+      "total_dependencies"
+    ],
+    "discovery": [
+      "config_files_present",
+      "config_flags",
+      "css_files_count",
+      "django_apps_heuristic",
+      "files_by_type",
+      "html_files_count",
+      "js_files_count",
+      "json_files_count",
+      "markdown_files_count",
+      "migration_dirs",
+      "python_files_count",
+      "sql_files_count",
+      "template_files_count",
+      "test_files",
+      "test_files_count",
+      "total_directories",
+      "total_files",
+      "yaml_files_count"
+    ],
+    "git": [
+      "available",
+      "branches",
+      "branches_count",
+      "commit_activity_last_12_months",
+      "contributors",
+      "contributors_count",
+      "current_branch",
+      "first_commit_date",
+      "head_commit",
+      "latest_commit_date",
+      "top_changed_files",
+      "total_commits",
+      "uncommitted_changes",
+      "unique_files_changed_total"
+    ],
+    "repository": [
+      "blank_lines",
+      "code_lines",
+      "comment_lines",
+      "comment_ratio",
+      "files_read_errors",
+      "loc_by_language",
+      "migration_files",
+      "python_modules",
+      "python_packages",
+      "test_files",
+      "top_10_largest_files",
+      "total_files_counted",
+      "total_lines"
+    ],
+    "technology": [
+      "note",
+      "observations",
+      "technology_signals"
+    ]
+  },
+  "section_presence": {
+    "architecture": true,
+    "dependencies": true,
+    "discovery": true,
+    "git": true,
+    "repository": true,
+    "technology": true
+  },
+  "summary": {
+    "evidence_count": 260,
+    "evidence_id_range": {
+      "count": 260,
+      "distinct": 260,
+      "first": "E-001",
+      "last": "E-260"
+    },
+    "evidence_type_counts": {
+      "architecture": 1,
+      "dependency": 1,
+      "git": 3,
+      "repository_metric": 42,
+      "technology": 213
+    },
+    "metric_count": 67,
+    "unknown_type_count": 0,
+    "warning_count": 0
+  },
+  "warnings": {
+    "by_analyzer": {},
+    "total": 0
+  }
+}

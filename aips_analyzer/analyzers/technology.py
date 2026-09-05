@@ -146,7 +146,16 @@ def _detect_technologies(
     # Group by technology for the summary
     tech_signals: dict[str, list[dict]] = {}
 
+    # Deduplicate identical observations:
+    # identical = same (technology, signal_type, source.file, source.pattern)
+    # Provenance information (section/line) is preserved on first occurrence.
+    seen: set[tuple[str, str, str | None, str | None]] = set()
+
     def record(obs: TechnologyObservation) -> None:
+        key = (obs.technology, obs.signal_type, obs.source.file, obs.source.pattern)
+        if key in seen:
+            return
+        seen.add(key)
         observations.append(obs)
         t = obs.technology
         if t not in tech_signals:
