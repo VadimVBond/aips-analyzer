@@ -1,0 +1,102 @@
+{% extends "layout.html" %}
+{% block title %}Facts — {{ project }}{% endblock %}
+
+{% block page_content %}
+<div class="mb-6 flex items-center justify-between">
+  <div>
+    <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Facts</h1>
+    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+      {{ total_facts }} facts · {{ total_unknowns }} unknowns
+    </p>
+  </div>
+  <div class="flex gap-2 flex-wrap">
+    <a href="{{ url_for('ui.facts', project=project) }}"
+       class="text-xs px-2 py-1 rounded-md border {{ 'bg-aips-600 text-white border-aips-600' if not type_filter else 'border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700' }}">
+      All
+    </a>
+    {% for ft in fact_types %}
+    <a href="{{ url_for('ui.facts', project=project, type=ft) }}"
+       class="text-xs px-2 py-1 rounded-md border {{ 'bg-aips-600 text-white border-aips-600' if ft == type_filter else 'border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700' }}">
+      {{ ft }}
+    </a>
+    {% endfor %}
+  </div>
+</div>
+
+{# ── Unknowns ─────────────────────────────────────────────── #}
+{% if unknowns %}
+<div class="card mb-6 border-purple-200 dark:border-purple-800">
+  <div class="card-header text-purple-700 dark:text-purple-300 flex items-center gap-2">
+    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    Unknowns ({{ total_unknowns }})
+  </div>
+  <div class="card-body p-0">
+    {% for u in unknowns %}
+    <div class="flex gap-3 px-4 py-3 border-b border-gray-100 dark:border-gray-800 last:border-0">
+      <div class="flex-1 min-w-0">
+        <div class="font-mono text-sm text-gray-800 dark:text-gray-200">{{ u.get('reason', 'unknown') }}</div>
+        {% if u.get('detail') %}
+        <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">{{ u.detail }}</div>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+{# ── Facts grouped by type ────────────────────────────────── #}
+<div class="space-y-6">
+  {% for ft, facts_list in facts_by_type.items() %}
+  <div class="card">
+    <div class="card-header flex items-center justify-between">
+      <span class="badge badge-info">{{ ft }}</span>
+      <span class="text-xs text-gray-500 dark:text-gray-400">{{ facts_list|length }}</span>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Subject</th>
+            <th>Value</th>
+            <th>Evidence refs</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for f in facts_list %}
+          <tr>
+            <td class="font-mono text-sm font-medium text-gray-800 dark:text-gray-200">
+              {{ f.subject }}
+            </td>
+            <td class="font-mono text-xs text-gray-600 dark:text-gray-400">
+              {% if f.value is sameas true %}
+              <span class="text-emerald-600 dark:text-emerald-400">true</span>
+              {% elif f.value is sameas false %}
+              <span class="text-red-500">false</span>
+              {% elif f.value is none or f.value == '' %}
+              <span class="text-gray-400">—</span>
+              {% else %}
+              {{ f.value }}
+              {% endif %}
+            </td>
+            <td class="text-xs text-gray-500 dark:text-gray-400 max-w-xs truncate">
+              {% for ref in f.get('evidence_refs', []) %}
+              <span class="font-mono block">{{ ref }}</span>
+              {% endfor %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% endfor %}
+  {% if not all_facts %}
+  <div class="card">
+    <div class="card-body text-center py-12 text-gray-400">
+      No facts available.
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

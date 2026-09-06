@@ -1,0 +1,188 @@
+{% extends "layout.html" %}
+{% block title %}AI Context — {{ project }}{% endblock %}
+
+{% block page_content %}
+<div class="mb-6 flex items-center justify-between">
+  <div>
+    <h1 class="text-2xl font-bold text-gray-900 dark:text-white">AI Context</h1>
+    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+      Structured input for an external LLM
+    </p>
+  </div>
+  <button
+    @click="navigator.clipboard.writeText(JSON.stringify({{ ai_ctx|tojson }}, null, 2))"
+    class="text-sm px-3 py-1.5 rounded-lg border border-gray-300 dark:border-gray-600
+           bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300
+           hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors flex items-center gap-2"
+  >
+    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+    Copy JSON
+  </button>
+</div>
+
+{# ── Info bar ─────────────────────────────────────────────── #}
+<div class="card mb-6">
+  <div class="card-body flex flex-wrap gap-6 text-sm">
+    <div>
+      <span class="text-gray-500 dark:text-gray-400">Schema:</span>
+      <span class="font-mono ml-1 text-gray-700 dark:text-gray-300">{{ ai_ctx.get('schema', '—') }}</span>
+    </div>
+    <div>
+      <span class="text-gray-500 dark:text-gray-400">Project:</span>
+      <span class="font-mono ml-1 text-gray-700 dark:text-gray-300">{{ ai_ctx.get('project', {}).get('name', '—') }}</span>
+    </div>
+    <div>
+      <span class="text-gray-500 dark:text-gray-400">Facts:</span>
+      <span class="font-mono ml-1 text-emerald-600 dark:text-emerald-400">{{ facts|length }}</span>
+    </div>
+    <div>
+      <span class="text-gray-500 dark:text-gray-400">Metrics:</span>
+      <span class="font-mono ml-1 text-blue-600 dark:text-blue-400">{{ metrics|length }}</span>
+    </div>
+    <div>
+      <span class="text-gray-500 dark:text-gray-400">Unknowns:</span>
+      <span class="font-mono ml-1 text-purple-600 dark:text-purple-400">{{ unknowns|length }}</span>
+    </div>
+  </div>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+  {# ── Summary ────────────────────────────────────────────── #}
+  {% if ai_ctx.get('summary') %}
+  <div class="card">
+    <div class="card-header">Summary</div>
+    <div class="card-body text-sm text-gray-700 dark:text-gray-300">
+      {{ ai_ctx.summary }}
+    </div>
+  </div>
+  {% endif %}
+
+  {# ── Guidance ───────────────────────────────────────────── #}
+  {% if guidance %}
+  <div class="card">
+    <div class="card-header">Guidance for LLM</div>
+    <div class="card-body">
+      <pre class="text-xs font-mono text-gray-700 dark:text-gray-300 whitespace-pre-wrap">{{ guidance }}</pre>
+    </div>
+  </div>
+  {% endif %}
+
+  {# ── Limits ─────────────────────────────────────────────── #}
+  {% if limits %}
+  <div class="card">
+    <div class="card-header">Limits</div>
+    <div class="card-body">
+      {% for limit in limits %}
+      <div class="flex gap-2 py-1.5 border-b border-gray-100 dark:border-gray-800 last:border-0">
+        {% if limit is mapping %}
+          <span class="badge badge-warning">{{ limit.get('type', 'limit') }}</span>
+          <span class="text-sm text-gray-700 dark:text-gray-300">{{ limit.get('description', '') }}</span>
+        {% else %}
+          <span class="text-sm text-gray-700 dark:text-gray-300">{{ limit }}</span>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+</div>
+
+{# ── Facts ────────────────────────────────────────────────── #}
+{% if facts %}
+<div class="card mt-6">
+  <div class="card-header flex items-center justify-between">
+    <span>Facts</span>
+    <span class="text-xs text-gray-500 dark:text-gray-400">{{ facts|length }}</span>
+  </div>
+  <div class="overflow-x-auto">
+    <table class="data-table">
+      <thead>
+        <tr><th>Fact ID</th><th>Type</th><th>Subject</th><th>Value</th></tr>
+      </thead>
+      <tbody>
+        {% for f in facts %}
+        <tr>
+          <td class="font-mono text-xs text-gray-500 dark:text-gray-400">{{ f.fact_id }}</td>
+          <td><span class="badge badge-info">{{ f.fact_type }}</span></td>
+          <td class="font-mono text-xs text-gray-700 dark:text-gray-300">{{ f.subject }}</td>
+          <td class="font-mono text-xs text-gray-600 dark:text-gray-400">
+            {% if f.value is sameas true %}<span class="text-emerald-500">true</span>
+            {% elif f.value is sameas false %}<span class="text-red-400">false</span>
+            {% else %}{{ f.value or '—' }}{% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endif %}
+
+{# ── Metrics ──────────────────────────────────────────────── #}
+{% if metrics %}
+<div class="card mt-6">
+  <div class="card-header flex items-center justify-between">
+    <span>Metrics</span>
+    <span class="text-xs text-gray-500 dark:text-gray-400">{{ metrics|length }}</span>
+  </div>
+  <div class="overflow-x-auto">
+    <table class="data-table">
+      <thead>
+        <tr><th>Name</th><th>Value</th><th>Unit</th></tr>
+      </thead>
+      <tbody>
+        {% for m in metrics %}
+        <tr>
+          <td class="font-mono text-xs text-gray-700 dark:text-gray-300">{{ m.name }}</td>
+          <td class="font-mono text-sm font-semibold text-gray-900 dark:text-white">{{ m.value }}</td>
+          <td class="font-mono text-xs text-gray-400">{{ m.get('unit', '—') }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endif %}
+
+{# ── Unknowns ────────────────────────────────────────────── #}
+{% if unknowns %}
+<div class="card mt-6 border-purple-200 dark:border-purple-800">
+  <div class="card-header text-purple-700 dark:text-purple-300 flex items-center gap-2">
+    Unknowns ({{ unknowns|length }})
+  </div>
+  <div class="card-body p-0">
+    {% for u in unknowns %}
+    <div class="px-4 py-3 border-b border-gray-100 dark:border-gray-800 last:border-0">
+      <div class="font-mono text-sm text-gray-700 dark:text-gray-300">
+        {{ u.get('reason', 'unknown') }}
+      </div>
+      {% if u.get('subject') %}
+      <div class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+        Subject: {{ u.subject }}
+      </div>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+{# ── Raw JSON viewer ──────────────────────────────────────── #}
+<div class="card mt-6" x-data="{ open: false }">
+  <button
+    @click="open = !open"
+    class="card-header w-full text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-900"
+  >
+    <span>Raw JSON</span>
+    <svg :class="open ? 'rotate-180' : ''" class="w-4 h-4 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </button>
+  <div x-show="open" x-collapse>
+    <div class="card-body p-0">
+      <pre class="mono-block p-4 overflow-x-auto bg-gray-50 dark:bg-gray-900 text-xs">{{ ai_ctx|tojson(indent=2) }}</pre>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

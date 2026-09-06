@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import json
 import logging
-from datetime import datetime, timezone
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 
@@ -116,7 +116,10 @@ def serialize_report(report: EvidenceReport, output_path: Path) -> None:
     data = report.to_dict()
 
     with output_path.open("w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2, ensure_ascii=False, default=_json_default)
+        json.dump(
+            data, f, indent=2, ensure_ascii=False, default=_json_default, sort_keys=True
+        )
+        f.write("\n")
 
     logger.info(f"Evidence written to {output_path}")
 

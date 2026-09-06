@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% block title %}Projects{% endblock %}
+
+{% block body %}
+<div class="max-w-3xl mx-auto">
+
+  {# ── Hero / intro ─────────────────────────────────────── #}
+  <div class="text-center mb-10">
+    <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-3">
+      AIPS Analyzer
+    </h1>
+    <p class="text-gray-500 dark:text-gray-400 text-lg">
+      Deterministic static analysis for software projects.
+      Select a project to explore, or run a new analysis.
+    </p>
+  </div>
+
+  {# ── Run analysis form ────────────────────────────────── #}
+  <div class="card mb-8" x-data="{ path: '', loading: false, error: '' }">
+    <div class="card-header">Run Analysis</div>
+    <div class="card-body">
+      <form
+        @submit.prevent="
+          if (!path.trim()) { error = 'Please enter a project path'; return; }
+          error = '';
+          loading = true;
+          fetch('{{ url_for("ui.analyze") }}', {
+            method: 'POST',
+            body: new URLSearchParams({ project_path: path }),
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+          }).then(r => r.json()).then(data => {
+            loading = false;
+            if (data.error) { error = data.error; }
+            else {
+              // Poll for completion
+              let poll = setInterval(() => {
+                fetch('/analyze/status/' + data.project).then(r => r.json()).then(s => {
+                  if (s.status === 'done') {
+                    clearInterval(poll);
+                    window.location.href = '{{ url_for("ui.dashboard") }}?project=' + s.project;
+                  }
+                });
+              }, 2000);
+            }
+          }).catch(e => { loading = false; error = String(e); });
+        "
+        class="flex gap-3"
+      >
+        <input
+          x-model="path"
+          type="text"
+          placeholder="/path/to/project"
+          class="flex-1 px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600
+                 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100
+                 placeholder-gray-400 dark:placeholder-gray-500
+                 focus:outline-none focus:ring-2 focus:ring-aips-500 focus:border-transparent"
+        />
+        <button
+          type="submit"
+          :disabled="loading"
+          class="px-4 py-2 rounded-lg bg-aips-600 hover:bg-aips-700 text-white font-medium
+                 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center gap-2"
+        >
+          <template x-if="loading">
+            <svg class="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
+            </svg>
+          </template>
+          <span>Analyze</span>
+        </button>
+      </form>
+      <p x-show="error" x-text="error" class="mt-2 text-sm text-red-600 dark:text-red-400"></p>
+    </div>
+  </div>
+
+  {# ── Project list ──────────────────────────────────────── #}
+  {% if projects %}
+  <div>
+    <h2 class="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-4">
+      Recent Projects
+    </h2>
+    <div class="space-y-3">
+      {% for p in projects %}
+      <a
+        href="{{ url_for('ui.dashboard', project=p.name) }}"
+        class="card block hover:border-aips-400 dark:hover:border-aips-600 transition-colors"
+      >
+        <div class="card-body flex items-center justify-between">
+          <div>
+            <div class="font-semibold text-gray-900 dark:text-white">{{ p.name }}</div>
+            <div class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+              Analyzed: {{ p.analyzed_at[:19] if p.analyzed_at and p.analyzed_at != '—' else '—' }}
+            </div>
+          </div>
+          <div class="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+            {% if p.fact_count != '—' %}
+            <span class="flex items-center gap-1">
+              <svg class="w-3.5 h-3.5 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              {{ p.fact_count }} facts
+            </span>
+            {% endif %}
+            {% if p.metric_count != '—' %}
+            <span class="flex items-center gap-1">
+              <svg class="w-3.5 h-3.5 text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              {{ p.metric_count }} metrics
+            </span>
+            {% endif %}
+            <svg class="w-4 h-4 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+  {% else %}
+  <div class="text-center py-16 text-gray-400 dark:text-gray-600">
+    <svg class="w-16 h-16 mx-auto mb-4 opacity-30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+    </svg>
+    <p class="text-lg">No analyzed projects yet.</p>
+    <p class="text-sm mt-1">Run your first analysis above.</p>
+  </div>
+  {% endif %}
+
+</div>
+{% endblock %}

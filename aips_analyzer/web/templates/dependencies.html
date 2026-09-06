@@ -1,0 +1,147 @@
+{% extends "layout.html" %}
+{% block title %}Dependencies — {{ project }}{% endblock %}
+
+{% block page_content %}
+<div class="mb-6">
+  <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Dependencies</h1>
+  <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Declared dependencies from lock-free analysis</p>
+</div>
+
+{# ── Python dependencies ────────────────────────────────────── #}
+{% if deps.get('python') %}
+<div class="card mb-6">
+  <div class="card-header flex items-center justify-between">
+    <span>Python</span>
+    <span class="text-xs text-gray-500 dark:text-gray-400">
+      {{ deps.python.get('production', [])|length + deps.python.get('dev', [])|length }} packages
+    </span>
+  </div>
+
+  {# Production #}
+  {% if deps.python.get('production') %}
+  <div>
+    <div class="px-4 py-2 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide bg-gray-50 dark:bg-gray-900">
+      Production
+    </div>
+    <div class="overflow-x-auto">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Package</th>
+            <th>Version</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for dep in deps.python.production %}
+          <tr>
+            <td class="font-mono text-sm text-gray-800 dark:text-gray-200">{{ dep.name }}</td>
+            <td class="font-mono text-xs text-gray-500 dark:text-gray-400">
+              {{ dep.get('version_spec', '—') }}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% endif %}
+
+  {# Dev #}
+  {% if deps.python.get('dev') %}
+  <div class="border-t border-gray-100 dark:border-gray-800">
+    <div class="px-4 py-2 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide bg-gray-50 dark:bg-gray-900">
+      Development
+    </div>
+    <div class="overflow-x-auto">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Package</th>
+            <th>Version</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for dep in deps.python.dev %}
+          <tr>
+            <td class="font-mono text-sm text-gray-800 dark:text-gray-200">{{ dep.name }}</td>
+            <td class="font-mono text-xs text-gray-500 dark:text-gray-400">
+              {{ dep.get('version_spec', '—') }}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endif %}
+
+{# ── Node dependencies ──────────────────────────────────────── #}
+{% if deps.get('node') %}
+<div class="card">
+  <div class="card-header flex items-center justify-between">
+    <span>Node / npm</span>
+    <span class="text-xs text-gray-500 dark:text-gray-400">
+      {{ deps.node.get('production', [])|length + deps.node.get('dev', [])|length }} packages
+    </span>
+  </div>
+
+  {% if deps.node.get('production') %}
+  <div>
+    <div class="px-4 py-2 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide bg-gray-50 dark:bg-gray-900">
+      Production
+    </div>
+    <div class="overflow-x-auto">
+      <table class="data-table">
+        <thead>
+          <tr><th>Package</th><th>Version</th></tr>
+        </thead>
+        <tbody>
+          {% for dep in deps.node.production %}
+          <tr>
+            <td class="font-mono text-sm text-gray-800 dark:text-gray-200">{{ dep.name }}</td>
+            <td class="font-mono text-xs text-gray-500 dark:text-gray-400">
+              {{ dep.get('version_spec', '—') }}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% endif %}
+
+  {% if deps.node.get('dev') %}
+  <div class="border-t border-gray-100 dark:border-gray-800">
+    <div class="px-4 py-2 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide bg-gray-50 dark:bg-gray-900">
+      Development
+    </div>
+    <div class="overflow-x-auto">
+      <table class="data-table">
+        <thead>
+          <tr><th>Package</th><th>Version</th></tr>
+        </thead>
+        <tbody>
+          {% for dep in deps.node.dev %}
+          <tr>
+            <td class="font-mono text-sm text-gray-800 dark:text-gray-200">{{ dep.name }}</td>
+            <td class="font-mono text-xs text-gray-500 dark:text-gray-400">
+              {{ dep.get('version_spec', '—') }}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endif %}
+
+{% if not deps.get('python') and not deps.get('node') %}
+<div class="card">
+  <div class="card-body text-center py-12 text-gray-400">No dependency information available.</div>
+</div>
+{% endif %}
+{% endblock %}

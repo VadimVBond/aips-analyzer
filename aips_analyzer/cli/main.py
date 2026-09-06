@@ -1,9 +1,21 @@
 """
-AIPS Analyzer — CLI entry point.
+AIPS Analyzer — CLI entry point (v0.1 productization).
 
 Usage:
+    aips-analyze /path/to/project
     python -m aips_analyzer /path/to/project
-    aips-analyze /path/to/project [--output ./output] [--verbose]
+
+Produces a complete, portable analysis package under
+    output/<project-name>/
+containing (where applicable):
+    - evidence.json             (raw)
+    - evidence-aggregated.json   (Aggregator v2)
+    - evidence-ai-context.json   (LLM-ready projection)
+    - evidence-audit.md          (human-readable v1 audit)
+    - manifest.json              (deterministic, portable)
+
+The package is deterministic for the same analyzer version and
+project state. Manifest is portable (no absolute paths).
 """
 
 from __future__ import annotations
@@ -13,16 +25,16 @@ import logging
 import sys
 from pathlib import Path
 
-from .. import __version__, __name_display__
+from .. import __name_display__, __version__
 from ..analyzer import analyze_project
+from ..manifest import MANIFEST_SCHEMA, MANIFEST_VERSION
 
 
 def _configure_utf8_io() -> None:
     """
     Make stdout/stderr safe for non-ASCII characters on Windows consoles
-    (cp1251 by default) and other locales that would otherwise raise
-    UnicodeEncodeError. On POSIX this is usually a no-op because UTF-8
-    is already the default.
+    (cp1251 by default). POSIX is usually a no-op because UTF-8 is
+    already the default.
     """
     for stream_name in ("stdout", "stderr"):
         stream = getattr(sys, stream_name, None)
@@ -34,17 +46,7 @@ def _configure_utf8_io() -> None:
         try:
             reconfigure(encoding="utf-8", errors="replace")
         except Exception:
-            # Some environments (pytest capture, IDE consoles) don't allow
-            # reconfigure. Failing silently is the right thing to do here.
             pass
-
-BANNER = f"""
-╔══════════════════════════════════════════╗
-║        AIPS Analyzer  v{__version__}           ║
-║  Deterministic Project Analysis Engine  ║
-║  No AI · No Code Execution · Read-only  ║
-╚══════════════════════════════════════════╝
-"""
 
 
 def setup_logging(verbose: bool, log_file: Path | None = None) -> None:
@@ -60,113 +62,96 @@ def setup_logging(verbose: bool, log_file: Path | None = None) -> None:
         datefmt="%H:%M:%S",
         handlers=handlers,
     )
-    # Quiet noisy loggers
     logging.getLogger("aips_analyzer.analyzers").setLevel(
         logging.DEBUG if verbose else logging.WARNING
     )
 
 
-def print_summary(report, output_path: Path | None) -> None:
-    """Print a human-readable summary to stdout."""
+def _resolve_package_dir(output_dir: Path, project_name: str) -> Path:
+    """Resolve package dir from output_dir, ensuring portability."""
+    return output_dir / project_name
+
+
+def _validate_target(project_path: Path) -> None:
+    """Pre-flight validation. Raise appropriate errors per AA-019 §6."""
+    if not project_path.exists():
+        raise FileNotFoundError(f"Project path does not exist: {project_path}")
+    if not project_path.is_dir():
+        raise NotADirectoryError(f"Project path is not a directory: {project_path}")
+
+
+def print_summary(
+    report,
+    package_dir: Path,
+) -> None:
+    """Print a human-readable summary to stdout.
+
+    AA-019 §8 target UX. Lists the 5 canonical artifacts in the
+    output package, plus a small analytic summary.
+    """
     proj = report.project
     disc = report.discovery
     repo = report.repository
-    dep = report.dependencies
     git_data = report.git
     arch = report.architecture
+    warnings = report.warnings
 
-    print(BANNER)
+    print()
+    print("=" * 64)
+    print(f"  AIPS Analyzer  v{__version__}")
+    print("=" * 64)
+    print()
     print(f"  Project  : {proj.get('name', '?')}")
     print(f"  Analyzed : {proj.get('analyzed_at', '?')}")
     print(f"  Duration : {proj.get('analysis_duration_seconds', '?')}s")
     print()
-    print("  ─── Discovery ──────────────────────────────────")
-    print(f"  Total files          : {disc.get('total_files', '?')}")
-    print(f"  Total directories    : {disc.get('total_directories', '?')}")
-    print(f"  Python files         : {disc.get('python_files_count', '?')}")
-    print(f"  HTML/template files  : {(disc.get('html_files_count', 0) or 0) + (disc.get('template_files_count', 0) or 0)}")
-    print(f"  CSS files            : {disc.get('css_files_count', '?')}")
-    print(f"  JS files             : {disc.get('js_files_count', '?')}")
-    print(f"  Test files           : {disc.get('test_files_count', '?')}")
-    print(f"  Migration dirs       : {disc.get('migration_dirs', [])}")
-    print(f"  Django apps (heur.)  : {disc.get('django_apps_heuristic', [])}")
-    print()
-    print("  ─── Repository Metrics ─────────────────────────")
-    print(f"  Total LOC            : {repo.get('total_lines', '?')}")
-    print(f"  Code lines           : {repo.get('code_lines', '?')}")
-    print(f"  Comment lines        : {repo.get('comment_lines', '?')}")
-    print(f"  Python LOC           : {(repo.get('loc_by_language') or {}).get('python', {}).get('total', '?')}")
-    print(f"  Python modules       : {repo.get('python_modules', '?')}")
-    print(f"  Python packages      : {repo.get('python_packages', '?')}")
-    print()
-    print("  ─── Dependencies ───────────────────────────────")
-    py_dep = dep.get("python", {})
-    nd_dep = dep.get("node", {})
-    print(f"  Python PM            : {py_dep.get('package_manager', '?')}")
-    print(f"  Python prod deps     : {py_dep.get('production_count', '?')}")
-    print(f"  Python dev deps      : {py_dep.get('dev_count', '?')}")
-    print(f"  Lockfile             : {py_dep.get('lockfile_file', 'none')}")
-    if nd_dep.get("production_count", 0) or nd_dep.get("dev_count", 0):
-        print(f"  Node PM              : {nd_dep.get('package_manager', '?')}")
-        print(f"  Node prod deps       : {nd_dep.get('production_count', '?')}")
-        print(f"  Node dev deps        : {nd_dep.get('dev_count', '?')}")
-    print()
-    print("  ─── Git ─────────────────────────────────────────")
+    print("  ── Summary ──────────────────────────────────────")
+    print(f"  Total files       : {disc.get('total_files', '?')}")
+    print(f"  Python files      : {disc.get('python_files_count', '?')}")
+    print(f"  Test files        : {disc.get('test_files_count', '?')}")
+    print(f"  Total LOC         : {repo.get('total_lines', '?')}")
+    print(f"  Python modules    : {repo.get('python_modules', '?')}")
+    print(f"  Git available     : {git_data.get('available', False)}")
     if git_data.get("available"):
-        print(f"  Branch               : {git_data.get('current_branch', '?')}")
-        print(f"  Commits              : {git_data.get('total_commits', '?')}")
-        print(f"  Contributors         : {git_data.get('contributors_count', '?')}")
-        print(f"  Branches             : {git_data.get('branches_count', '?')}")
-        print(f"  First commit         : {git_data.get('first_commit_date', '?')}")
-        print(f"  Latest commit        : {git_data.get('latest_commit_date', '?')}")
-    else:
-        print(f"  Git not available    : {git_data.get('reason', git_data.get('error', '?'))}")
+        print(f"  Git branch        : {git_data.get('current_branch', '?')}")
+    print(f"  Architecture mods : {arch.get('total_modules', '?')}")
+    print(
+        f"  Cyclic deps       : {arch.get('cyclic_dependencies', {}).get('count', 0)}"
+    )
+    print(f"  Evidence items    : {len(report.evidence)}")
+    print(f"  Warnings          : {len(warnings)}")
     print()
-    print("  ─── Architecture (AST) ─────────────────────────")
-    print(f"  Python modules       : {arch.get('total_modules', '?')}")
-    print(f"  Django apps (AST)    : {len(arch.get('django_apps', []))}")
-    print(f"  Model modules        : {len(arch.get('model_modules', []))}")
-    print(f"  View modules         : {len(arch.get('view_modules', []))}")
-    print(f"  URL modules          : {len(arch.get('url_modules', []))}")
-    print(f"  Celery task modules  : {len(arch.get('celery_task_modules', []))}")
-    print(f"  Cyclic deps          : {arch.get('cyclic_dependencies', {}).get('count', 0)}")
-    print(f"  Parse errors         : {len(arch.get('parse_errors', []))}")
+    print("  ── Output package ──────────────────────────────")
+    for fname in (
+        "evidence.json",
+        "evidence-aggregated.json",
+        "evidence-ai-context.json",
+        "evidence-audit.md",
+        "manifest.json",
+    ):
+        path = package_dir / fname
+        if path.exists():
+            print(f"  {fname:<28}  {path}")
     print()
-    print("  ─── Technology Signals ──────────────────────────")
-    tech_signals = report.technology.get("technology_signals", {})
-    if tech_signals:
-        for tech, signals in sorted(tech_signals.items()):
-            signal_types = set(s["signal_type"] for s in signals)
-            print(f"  {tech:<24} : {len(signals)} signal(s) [{', '.join(sorted(signal_types))}]")
-    else:
-        print("  (no technology signals)")
+    print(f"  Manifest schema: {MANIFEST_SCHEMA} v{MANIFEST_VERSION}")
     print()
-    print("  ─── Evidence Summary ────────────────────────────")
-    print(f"  Total evidence items : {len(report.evidence)}")
-    print(f"  Warnings             : {len(report.warnings)}")
-    if report.warnings:
-        print()
-        print("  ─── Warnings ────────────────────────────────────")
-        for w in report.warnings:
-            mark = "⚠" if w.recoverable else "✗"
-            print(f"  {mark} [{w.analyzer}] {w.error}")
-
-    print()
-    if output_path:
-        print(f"  Evidence saved to: {output_path}")
+    print("  Analysis completed successfully.")
     print()
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(
         prog="aips-analyze",
-        description="AIPS Analyzer — Deterministic static analysis of software projects",
+        description=(
+            "AIPS Analyzer — Deterministic static analysis of software projects (v0.1)"
+        ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
+        epilog="""\
 Examples:
-  python -m aips_analyzer /path/to/my_project
-  python -m aips_analyzer /path/to/my_project --output ./output --verbose
-  aips-analyze /path/to/my_project
+  aips-analyze /path/to/project
+  aips-analyze /path/to/project --output ./my_results
+  aips-analyze /path/to/project --verbose
+  aips-analyze /path/to/project --no-output
         """,
     )
     parser.add_argument(
@@ -179,7 +164,7 @@ Examples:
         "-o",
         metavar="OUTPUT_DIR",
         default="output",
-        help="Directory to save evidence.json (default: ./output)",
+        help="Directory to save the analysis package (default: ./output)",
     )
     parser.add_argument(
         "--verbose",
@@ -190,7 +175,7 @@ Examples:
     parser.add_argument(
         "--no-output",
         action="store_true",
-        help="Do not save evidence.json (print only)",
+        help="Do not save any artifacts (print only)",
     )
     parser.add_argument(
         "--version",
@@ -202,43 +187,44 @@ Examples:
     _configure_utf8_io()
     project_path = Path(args.project).resolve()
 
-    # Determine output dir and log file
+    # Pre-flight validation (AA-019 §6: error handling per failure mode).
+    try:
+        _validate_target(project_path)
+    except (FileNotFoundError, NotADirectoryError) as exc:
+        print(f"\nError: {exc}", file=sys.stderr)
+        sys.exit(1)
+
     output_dir = None if args.no_output else Path(args.output).resolve()
     log_file = (
-        output_dir / project_path.name / "run.log"
-        if output_dir
-        else None
+        None if output_dir is None else output_dir / project_path.name / "run.log"
     )
-
     setup_logging(args.verbose, log_file)
 
     print(f"\nAnalyzing project: {project_path}")
     print(f"Output directory : {output_dir or '(none — use --output to save)'}\n")
 
+    # Run analysis. Per AA-019 §6, partial analyzer failure does not
+    # necessarily destroy the whole report — analyze_project already
+    # isolates per-analyzer failures into AnalyzerWarning entries.
     try:
         report = analyze_project(
             project_path=project_path,
             output_dir=output_dir,
         )
-    except FileNotFoundError as e:
-        print(f"\nError: {e}", file=sys.stderr)
-        sys.exit(1)
-    except NotADirectoryError as e:
-        print(f"\nError: {e}", file=sys.stderr)
-        sys.exit(1)
-    except Exception as e:
-        print(f"\nUnexpected error: {e}", file=sys.stderr)
+    except Exception as exc:
+        print(f"\nUnexpected error: {exc}", file=sys.stderr)
         logging.getLogger(__name__).exception("Fatal error during analysis")
         sys.exit(2)
 
-    # Determine output path for summary
-    output_path = (
-        output_dir / project_path.name / "evidence.json"
-        if output_dir
-        else None
-    )
+    if output_dir is not None:
+        package_dir = _resolve_package_dir(output_dir, report.project["name"])
+        print_summary(report, package_dir)
+    else:
+        # No artifacts: minimal summary.
+        print(f"Project: {report.project.get('name', '?')}")
+        print(f"Evidence items: {len(report.evidence)}")
+        print("Run with --output DIR to save the analysis package.")
 
-    print_summary(report, output_path)
     sys.exit(0)
 
 

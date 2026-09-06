@@ -16,7 +16,6 @@ from pathlib import Path
 
 from ..constants import (
     DJANGO_APP_INDICATORS,
-    DJANGO_PROJECT_INDICATORS,
     EXCLUDED_DIRS,
     EXTENSION_MAP,
     FILENAME_MAP,
@@ -26,7 +25,7 @@ from ..constants import (
     TEST_FILE_SUFFIXES,
 )
 from ..evidence import EvidenceBuilder
-from ..models import AnalyzerResult, AnalyzerWarning, EvidenceSource
+from ..models import AnalyzerResult, AnalyzerWarning
 
 logger = logging.getLogger(__name__)
 
@@ -176,11 +175,18 @@ def _discover(project_root: Path, evidence: EvidenceBuilder) -> dict:
                 has_package_json = True
             elif name_lower in ("dockerfile", ".dockerfile"):
                 has_dockerfile = True
-            elif name_lower in ("docker-compose.yml", "docker-compose.yaml", "compose.yaml"):
+            elif name_lower in (
+                "docker-compose.yml",
+                "docker-compose.yaml",
+                "compose.yaml",
+            ):
                 has_docker_compose = True
             elif name_lower == ".gitignore":
                 has_gitignore = True
-            elif name_lower in ("pytest.ini", "setup.cfg") and category in ("ini", "cfg"):
+            elif name_lower in ("pytest.ini", "setup.cfg") and category in (
+                "ini",
+                "cfg",
+            ):
                 has_pytest_ini = True
             elif name_lower == "conftest.py":
                 has_conftest = True
@@ -201,8 +207,9 @@ def _discover(project_root: Path, evidence: EvidenceBuilder) -> dict:
 
     # Emit evidence items
     evidence.add_metric(
-        "total_files", total_files,
-        notes=f"Excluding: {', '.join(sorted(EXCLUDED_DIRS)[:8])}..."
+        "total_files",
+        total_files,
+        notes=f"Excluding: {', '.join(sorted(EXCLUDED_DIRS)[:8])}...",
     )
     evidence.add_metric("total_directories", total_dirs)
     evidence.add_metric("python_files", len(python_files))
@@ -252,9 +259,10 @@ def _discover(project_root: Path, evidence: EvidenceBuilder) -> dict:
 def _walk(root: Path):
     """
     Yield all paths (files and dirs) under root, skipping EXCLUDED_DIRS.
+    Sorted alphabetically for deterministic evidence ID ordering across runs.
     """
     try:
-        entries = list(root.iterdir())
+        entries = sorted(root.iterdir(), key=lambda p: p.name)
     except PermissionError as e:
         logger.warning(f"Cannot access {root}: {e}")
         return
@@ -280,9 +288,7 @@ def _check_django_app(
     at least 2 of the Django app indicator files.
     """
     indicators_found = sum(
-        1
-        for indicator in DJANGO_APP_INDICATORS
-        if (directory / indicator).exists()
+        1 for indicator in DJANGO_APP_INDICATORS if (directory / indicator).exists()
     )
     if indicators_found >= 2:
         rel = str(directory.relative_to(project_root)).replace("\\", "/")

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}{% endblock %} — AIPS Analyzer</title>
+
+  {# Tailwind CSS via CDN (no build step for v0.1) #}
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            aips: {
+              50:  '#f0f9ff',
+              100: '#e0f2fe',
+              200: '#bae6fd',
+              300: '#7dd3fc',
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+              800: '#075985',
+              900: '#0c4a6e',
+            },
+            surface: {
+              light: '#ffffff',
+              dark:  '#111827',
+            },
+            panel: {
+              light: '#f9fafb',
+              dark:  '#1f2937',
+            },
+          },
+          fontFamily: {
+            mono: ['ui-monospace', 'Menlo', 'Consolas', 'monospace'],
+          },
+        },
+      },
+    }
+  </script>
+
+  {# HTMX #}
+  <script src="https://unpkg.com/htmx.org@1.9.12/dist/htmx.min.js"></script>
+
+  {# Alpine.js #}
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  {# Lucide icons (SVG sprite via CDN) #}
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+  <style>
+    /* ── Scrollbar ─────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #9ca3af; border-radius: 3px; }
+    .dark ::-webkit-scrollbar-thumb { background: #4b5563; }
+
+    /* ── Code / data blocks ─────────────────────────────── */
+    .mono-block {
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-size: 0.8125rem;
+      line-height: 1.6;
+    }
+
+    /* ── Status badges ──────────────────────────────────── */
+    .badge { @apply inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium; }
+    .badge-success { @apply bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200; }
+    .badge-warning  { @apply bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200; }
+    .badge-error    { @apply bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200; }
+    .badge-info     { @apply bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200; }
+    .badge-neutral  { @apply bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300; }
+    .badge-unknown  { @apply bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200; }
+
+    /* ── Nav active state ───────────────────────────────── */
+    .nav-link { @apply flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors; }
+    .nav-link:hover { @apply bg-gray-100 text-gray-900 dark:bg-gray-700 dark:text-gray-100; }
+    .nav-link.active { @apply bg-aips-600 text-white; }
+    .dark .nav-link:hover { @apply bg-gray-700 text-gray-100; }
+
+    /* ── Cards ──────────────────────────────────────────── */
+    .card { @apply bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm; }
+    .card-header { @apply px-4 py-3 border-b border-gray-200 dark:border-gray-700 font-semibold text-sm; }
+    .card-body   { @apply p-4; }
+
+    /* ── Tables ────────────────────────────────────────── */
+    .data-table { @apply w-full text-sm; }
+    .data-table th { @apply px-3 py-2 text-left font-semibold text-gray-600 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700; }
+    .data-table td { @apply px-3 py-2 border-b border-gray-100 dark:border-gray-800; }
+    .data-table tr:hover td { @apply bg-gray-50 dark:bg-gray-900; }
+
+    /* ── Pipeline diagram ──────────────────────────────── */
+    .pipeline-stage {
+      @apply flex flex-col items-center justify-center w-24 h-14 rounded-lg border-2 text-xs font-mono font-semibold text-center;
+    }
+    .pipeline-stage.active {
+      @apply border-aips-500 bg-aips-50 text-aips-700 dark:bg-aips-900 dark:text-aips-200;
+    }
+    .pipeline-stage.inactive {
+      @apply border-gray-300 bg-gray-50 text-gray-400 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-500;
+    }
+    .pipeline-arrow { @apply text-gray-400 dark:text-gray-600; }
+  </style>
+
+  {% block head %}{% endblock %}
+</head>
+
+<body class="bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 min-h-screen">
+
+  {# ── Top nav bar ─────────────────────────────────────── #}
+  <header
+    x-data="{ mobileOpen: false, dark: localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches) }"
+    x-init="
+      if (dark) { document.documentElement.classList.add('dark'); }
+      $watch('dark', v => {
+        document.documentElement.classList.toggle('dark', v);
+        localStorage.setItem('theme', v ? 'dark' : 'light');
+      });
+    "
+    class="sticky top-0 z-40 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 shadow-sm"
+  >
+    <div class="max-w-screen-xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
+
+      {# Logo + title #}
+      <a href="{{ url_for('ui.home') }}" class="flex items-center gap-2 font-bold text-lg text-gray-900 dark:text-white hover:text-aips-600 dark:hover:text-aips-400 transition-colors">
+        <svg class="w-6 h-6 text-aips-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+          <polyline points="2 17 12 22 22 17"/>
+          <polyline points="2 12 12 17 22 12"/>
+        </svg>
+        <span>AIPS Analyzer</span>
+        <span class="hidden sm:inline text-xs font-mono bg-aips-100 dark:bg-aips-900 text-aips-700 dark:text-aips-300 px-1.5 py-0.5 rounded">v0.1</span>
+      </a>
+
+      {# Project breadcrumb (when active) #}
+      {% if project %}
+      <nav class="hidden md:flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
+        <span>/</span>
+        <span class="text-gray-900 dark:text-gray-200 font-medium">{{ project }}</span>
+      </nav>
+      {% endif %}
+
+      {# Right side controls #}
+      <div class="flex items-center gap-2">
+        {# Dark mode toggle #}
+        <button
+          @click="dark = !dark"
+          class="p-2 rounded-md text-gray-500 hover:text-gray-900 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-800 transition-colors"
+          :title="dark ? 'Switch to light mode' : 'Switch to dark mode'"
+        >
+          <template x-if="!dark">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </template>
+          <template x-if="dark">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          </template>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-screen-xl mx-auto px-4 py-6">
+    {% block body %}{% endblock %}
+  </div>
+
+  {# Lucide icons init #}
+  <script>window.addEventListener('load', () => lucide.createIcons());</script>
+
+  {% block scripts %}{% endblock %}
+</body>
+</html>

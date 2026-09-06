@@ -1,0 +1,120 @@
+{% extends "layout.html" %}
+{% block title %}Git — {{ project }}{% endblock %}
+
+{% block page_content %}
+<div class="mb-6">
+  <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Git</h1>
+</div>
+
+{% if available %}
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-8">
+  <div class="card card-body text-center">
+    <div class="text-2xl font-bold text-gray-900 dark:text-white">
+      {{ git_data.get('current_branch', '—') }}
+    </div>
+    <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Current Branch</div>
+  </div>
+  <div class="card card-body text-center">
+    <div class="text-2xl font-bold text-gray-900 dark:text-white">
+      {{ git_data.get('commits_count', 0) }}
+    </div>
+    <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Commits</div>
+  </div>
+  <div class="card card-body text-center">
+    <div class="text-2xl font-bold text-gray-900 dark:text-white">
+      {{ git_data.get('branches_count', 0) }}
+    </div>
+    <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Branches</div>
+  </div>
+</div>
+
+{# ── Recent commits ─────────────────────────────────────────── #}
+{% if git_data.get('recent_commits') %}
+<div class="card mb-6">
+  <div class="card-header">Recent Commits</div>
+  <div class="overflow-x-auto">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Hash</th>
+          <th>Author</th>
+          <th>Message</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for commit in git_data.recent_commits %}
+        <tr>
+          <td class="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap">
+            {{ commit.get('date', '')[:10] }}
+          </td>
+          <td class="font-mono text-xs text-gray-600 dark:text-gray-400">
+            {{ commit.get('hash', '')[:7] }}
+          </td>
+          <td class="text-xs text-gray-600 dark:text-gray-400">
+            {{ commit.get('author', '') }}
+          </td>
+          <td class="text-sm text-gray-700 dark:text-gray-300 truncate max-w-md">
+            {{ commit.get('message', '') }}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endif %}
+
+{# ── Top changed files ─────────────────────────────────────── #}
+{% if git_data.get('top_changed_files') %}
+<div class="card mb-6">
+  <div class="card-header">Top Changed Files</div>
+  <div class="card-body p-0">
+    <div class="divide-y divide-gray-100 dark:divide-gray-800">
+      {% for f in git_data.top_changed_files %}
+      <div class="flex items-center justify-between px-4 py-2">
+        <span class="font-mono text-xs text-gray-700 dark:text-gray-300">{{ f.path }}</span>
+        <span class="badge badge-neutral text-xs">+{{ f.additions }} / −{{ f.deletions }}</span>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{# ── Contributors ──────────────────────────────────────────── #}
+{% if git_data.get('contributors') %}
+<div class="card">
+  <div class="card-header">Contributors</div>
+  <div class="overflow-x-auto">
+    <table class="data-table">
+      <thead>
+        <tr><th>Name</th><th>Email</th><th>Commits</th></tr>
+      </thead>
+      <tbody>
+        {% for c in git_data.contributors %}
+        <tr>
+          <td class="text-sm text-gray-800 dark:text-gray-200">{{ c.name }}</td>
+          <td class="font-mono text-xs text-gray-500 dark:text-gray-400">{{ c.email }}</td>
+          <td class="text-sm text-gray-600 dark:text-gray-400">{{ c.commits }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endif %}
+
+{% else %}
+{# ── No git ─────────────────────────────────────────────────── #}
+<div class="card">
+  <div class="card-body text-center py-12 text-gray-400">
+    <svg class="w-12 h-12 mx-auto mb-4 opacity-30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/>
+    </svg>
+    <p>Git repository not available.</p>
+    <p class="text-sm mt-1">This project may not be a git repository.</p>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+{% block title %}Evidence — {{ project }}{% endblock %}
+
+{% block page_content %}
+<div class="mb-6 flex flex-col sm:flex-row sm:items-center gap-4">
+
+  <div>
+    <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Evidence</h1>
+    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+      {{ filtered_count }} of {{ total_count }} items
+    </p>
+  </div>
+
+  <div class="flex gap-2 ml-auto">
+    <form method="get" action="{{ url_for('ui.evidence', project=project) }}">
+      <select name="type" onchange="this.form.submit()"
+              class="text-sm border border-gray-300 dark:border-gray-600 rounded-md px-2 py-1.5
+                     bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
+        <option value="">All types</option>
+        {% for t in types %}
+        <option value="{{ t }}" {{ 'selected' if t == type_filter else '' }}>{{ t }}</option>
+        {% endfor %}
+      </select>
+      <input type="hidden" name="q" value="{{ search }}" />
+    </form>
+
+    <form method="get" action="{{ url_for('ui.evidence', project=project) }}"
+          class="flex gap-1">
+      <input type="text" name="q" value="{{ search }}" placeholder="Search..."
+             class="text-sm border border-gray-300 dark:border-gray-600 rounded-md px-2 py-1.5
+                    bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 w-40" />
+      <input type="hidden" name="type" value="{{ type_filter }}" />
+      <button type="submit" class="text-sm px-2 py-1.5 rounded-md border border-gray-300
+                                   dark:border-gray-600 bg-white dark:bg-gray-800
+                                   text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
+        Search
+      </button>
+    </form>
+  </div>
+
+</div>
+
+{# ── Evidence table ─────────────────────────────────────────── #}
+<div class="card overflow-hidden">
+  <div class="overflow-x-auto">
+    <table class="data-table">
+      <thead class="bg-gray-50 dark:bg-gray-900 sticky top-0">
+        <tr>
+          <th>ID</th>
+          <th>Type</th>
+          <th>Subject</th>
+          <th>Value</th>
+          <th>Source</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in filtered_items %}
+        <tr x-data="{ open: false }">
+          <td class="font-mono text-xs text-gray-500 dark:text-gray-400">{{ item.id }}</td>
+          <td>
+            <span class="badge badge-info">{{ item.type }}</span>
+          </td>
+          <td class="font-mono text-xs font-medium text-gray-800 dark:text-gray-200">
+            {{ item.subject }}
+          </td>
+          <td class="font-mono text-xs text-gray-600 dark:text-gray-400 max-w-xs truncate"
+              title="{{ item.value }}">
+            {% if item.value is string %}
+              {{ item.value[:80] }}{% if item.value|length > 80 %}…{% endif %}
+            {% elif item.value is mapping %}
+              {{ item.value|tojson }}
+            {% else %}
+              {{ item.value }}
+            {% endif %}
+          </td>
+          <td class="text-xs text-gray-500 dark:text-gray-400">
+            {% if item.source.file %}
+            <span class="font-mono">{{ item.source.file }}</span>
+            {% endif %}
+            {% if item.source.line %}
+            <span class="text-gray-400">:{{ item.source.line }}</span>
+            {% endif %}
+            {% if item.source.method %}
+            <span class="badge badge-neutral ml-1">{{ item.source.method }}</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+        {% if not filtered_items %}
+        <tr>
+          <td colspan="5" class="text-center py-8 text-gray-400">No evidence items match.</td>
+        </tr>
+        {% endif %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

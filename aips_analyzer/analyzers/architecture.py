@@ -30,7 +30,7 @@ from ..models import AnalyzerResult, AnalyzerWarning, ArchitectureModule, Eviden
 logger = logging.getLogger(__name__)
 
 # Thresholds for candidate findings
-FAN_IN_THRESHOLD = 5   # modules that import this one ≥ threshold
+FAN_IN_THRESHOLD = 5  # modules that import this one ≥ threshold
 FAN_OUT_THRESHOLD = 15  # this module imports ≥ threshold others
 LARGE_MODULE_THRESHOLD = 500  # lines
 
@@ -116,8 +116,7 @@ def _analyze_architecture(project_root: Path, evidence: EvidenceBuilder) -> dict
 
     # Step 9: Parse errors
     parse_errors = [
-        {"file": m.path, "error": m.parse_error}
-        for m in modules if m.parse_error
+        {"file": m.path, "error": m.parse_error} for m in modules if m.parse_error
     ]
 
     # Emit evidence
@@ -171,8 +170,7 @@ def _analyze_architecture(project_root: Path, evidence: EvidenceBuilder) -> dict
             "large_modules": sorted(large_modules, key=lambda x: -x["lines"])[:20],
         },
         "top_external_imports": [
-            {"package": pkg, "import_count": cnt}
-            for pkg, cnt in top_external
+            {"package": pkg, "import_count": cnt} for pkg, cnt in top_external
         ],
         "parse_errors": parse_errors[:50],
         "thresholds": {
@@ -185,19 +183,25 @@ def _analyze_architecture(project_root: Path, evidence: EvidenceBuilder) -> dict
 
 
 def _iter_python_files(project_root: Path) -> Generator[Path, None, None]:
-    """Yield .py files, skipping excluded directories and migrations."""
+    """Yield .py files, skipping excluded directories and migrations.
+
+    Results are sorted alphabetically for deterministic evidence ID ordering.
+    """
+    py_files: list[Path] = []
     for path in project_root.rglob("*.py"):
         rel = path.relative_to(project_root)
-        # Skip excluded dirs
         if any(part in EXCLUDED_DIRS for part in rel.parts):
             continue
-        # Skip migrations — they add noise
         if any(part in MIGRATION_DIR_NAMES for part in rel.parts):
             continue
+        py_files.append(path)
+    for path in sorted(py_files, key=lambda p: str(p)):
         yield path
 
 
-def _analyze_python_file(py_file: Path, project_root: Path) -> ArchitectureModule | None:
+def _analyze_python_file(
+    py_file: Path, project_root: Path
+) -> ArchitectureModule | None:
     """Parse a Python file with AST and extract structural information."""
     rel_path = str(py_file.relative_to(project_root)).replace("\\", "/")
 
@@ -229,7 +233,10 @@ def _analyze_python_file(py_file: Path, project_root: Path) -> ArchitectureModul
         module.has_tasks = True
     if stem == "admin":
         module.has_admin = True
-    if any(p.lower().startswith("test") or p.lower().endswith("test") for p in rel_path.split("/")):
+    if any(
+        p.lower().startswith("test") or p.lower().endswith("test")
+        for p in rel_path.split("/")
+    ):
         module.is_test = True
 
     # Parse AST
@@ -278,7 +285,9 @@ def _analyze_python_file(py_file: Path, project_root: Path) -> ArchitectureModul
                 base_str = ast.unparse(base) if hasattr(ast, "unparse") else ""
                 if any(x in base_str for x in ["Model", "models.Model"]):
                     module.has_models = True
-                if any(x in base_str for x in ["View", "APIView", "ViewSet", "ListView"]):
+                if any(
+                    x in base_str for x in ["View", "APIView", "ViewSet", "ListView"]
+                ):
                     module.has_views = True
 
     module.classes = class_names[:50]  # cap
@@ -290,7 +299,9 @@ def _analyze_python_file(py_file: Path, project_root: Path) -> ArchitectureModul
     return module
 
 
-def _classify_imports(modules: list[ArchitectureModule], known_packages: set[str]) -> None:
+def _classify_imports(
+    modules: list[ArchitectureModule], known_packages: set[str]
+) -> None:
     """
     Separate imports into internal (within project) and external (third-party/stdlib).
     Updates modules in-place.
@@ -302,7 +313,10 @@ def _classify_imports(modules: list[ArchitectureModule], known_packages: set[str
         top_level_packages.add(top)
 
     import sys
-    stdlib_modules = sys.stdlib_module_names if hasattr(sys, "stdlib_module_names") else set()
+
+    stdlib_modules = (
+        sys.stdlib_module_names if hasattr(sys, "stdlib_module_names") else set()
+    )
 
     for module in modules:
         internal: list[str] = []
@@ -393,7 +407,8 @@ def _find_django_apps(
 
     # Filter: a Django app must have at least models or views
     django_apps = [
-        app for app in app_dirs.values()
+        app
+        for app in app_dirs.values()
         if (app["has_models"] or app["has_views"]) and app["module_count"] >= 1
     ]
 

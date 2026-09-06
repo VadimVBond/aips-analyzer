@@ -1,0 +1,95 @@
+{% extends "layout.html" %}
+{% block title %}Architecture — {{ project }}{% endblock %}
+
+{% block page_content %}
+<div class="mb-6">
+  <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Architecture</h1>
+  <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{{ total_modules }} modules</p>
+</div>
+
+{# ── Summary ──────────────────────────────────────────────── #}
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+  <div class="card card-body text-center">
+    <div class="text-2xl font-bold text-gray-900 dark:text-white">{{ total_modules }}</div>
+    <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Modules</div>
+  </div>
+  <div class="card card-body text-center">
+    <div class="text-2xl font-bold text-gray-900 dark:text-white">{{ cyclic.get('count', 0) }}</div>
+    <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Cyclic Deps</div>
+  </div>
+  <div class="card card-body text-center">
+    <div class="text-2xl font-bold text-gray-900 dark:text-white">
+      {{ arch.get('total_imports', 0) }}
+    </div>
+    <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Total Imports</div>
+  </div>
+  <div class="card card-body text-center">
+    <div class="text-2xl font-bold text-gray-900 dark:text-white">
+      {{ arch.get('django_apps', [])|length }}
+    </div>
+    <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Django Apps</div>
+  </div>
+</div>
+
+{# ── Cycles ────────────────────────────────────────────────── #}
+{% if cyclic.get('count', 0) > 0 %}
+<div class="card mb-6 border-red-200 dark:border-red-800">
+  <div class="card-header text-red-700 dark:text-red-300 flex items-center gap-2">
+    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+    Cyclic Dependencies ({{ cyclic.count }})
+  </div>
+  <div class="card-body p-0">
+    {% for cycle in cyclic.get('cycles', []) %}
+    <div class="px-4 py-2 border-b border-gray-100 dark:border-gray-800 last:border-0">
+      <code class="text-xs font-mono text-gray-700 dark:text-gray-300">
+        {{ cycle|join(' → ') }}
+      </code>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+{# ── Modules table ────────────────────────────────────────── #}
+<div class="card">
+  <div class="card-header">Modules</div>
+  <div class="overflow-x-auto">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Path</th>
+          <th>LOC</th>
+          <th>Classes</th>
+          <th>Functions</th>
+          <th>Flags</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for m in modules %}
+        <tr>
+          <td class="font-mono text-xs text-gray-700 dark:text-gray-300">{{ m.path }}</td>
+          <td class="text-xs text-gray-600 dark:text-gray-400">{{ m.lines }}</td>
+          <td class="text-xs text-gray-600 dark:text-gray-400">{{ m.classes|length }}</td>
+          <td class="text-xs text-gray-600 dark:text-gray-400">{{ m.functions|length }}</td>
+          <td class="flex flex-wrap gap-1">
+            {% if m.has_models %}<span class="badge badge-info text-[10px]">models</span>{% endif %}
+            {% if m.has_views %}<span class="badge badge-info text-[10px]">views</span>{% endif %}
+            {% if m.has_urls %}<span class="badge badge-info text-[10px]">urls</span>{% endif %}
+            {% if m.has_tasks %}<span class="badge badge-warning text-[10px]">tasks</span>{% endif %}
+            {% if m.has_admin %}<span class="badge badge-info text-[10px]">admin</span>{% endif %}
+            {% if m.is_test %}<span class="badge badge-neutral text-[10px]">test</span>{% endif %}
+            {% if m.is_migration %}<span class="badge badge-neutral text-[10px]">migrate</span>{% endif %}
+            {% if m.parse_error %}<span class="badge badge-error text-[10px]">parse error</span>{% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+        {% if not modules %}
+        <tr>
+          <td colspan="5" class="text-center py-8 text-gray-400">No architecture data available.</td>
+        </tr>
+        {% endif %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

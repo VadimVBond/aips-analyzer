@@ -10,18 +10,15 @@ readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
 
-dependencies = [
-    "tomllib; python_version < '3.11'",
-]
+dependencies = ["tomllib; python_version < '3.11'"]
 
 [project.optional-dependencies]
-dev = [
-    "pytest>=8.0",
-    "pytest-cov",
-]
+dev = ["pytest>=8.0", "pytest-cov"]
+web = ["flask>=3.0.0"]
 
 [project.scripts]
 aips-analyze = "aips_analyzer.cli.main:main"
+aips-web = "aips_analyzer.web.app:main"
 
 [tool.setuptools.packages.find]
 where = ["."]

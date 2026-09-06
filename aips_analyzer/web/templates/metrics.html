@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block title %}Metrics — {{ project }}{% endblock %}
+
+{% block page_content %}
+<div class="mb-6">
+  <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Metrics</h1>
+  <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{{ total }} metrics</p>
+</div>
+
+{# ── Metrics grouped ──────────────────────────────────────── #}
+<div class="space-y-6">
+  {% for group, metrics in grouped.items() %}
+  <div class="card">
+    <div class="card-header">{{ group }}</div>
+    <div class="overflow-x-auto">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Value</th>
+            <th>Unit</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for m in metrics %}
+          <tr>
+            <td class="font-mono text-xs text-gray-700 dark:text-gray-300">{{ m.name }}</td>
+            <td class="font-mono text-sm font-semibold text-gray-900 dark:text-white">
+              {% if m.value is sameas true %}
+              <span class="text-emerald-500">✓</span>
+              {% elif m.value is sameas false %}
+              <span class="text-gray-300 dark:text-gray-600">✗</span>
+              {% else %}
+              {{ m.value }}
+              {% endif %}
+            </td>
+            <td class="font-mono text-xs text-gray-400">
+              {{ m.get('unit', '—') }}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% endfor %}
+  {% if not metrics_list %}
+  <div class="card">
+    <div class="card-body text-center py-12 text-gray-400">No metrics available.</div>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

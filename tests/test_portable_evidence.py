@@ -7,6 +7,7 @@ These tests enforce:
 - technology observations are deduplicated deterministically
 - evidence stays valid against the documented schema
 """
+
 from __future__ import annotations
 
 import json
@@ -50,6 +51,7 @@ class TestPortableProjectBlock:
         evidence_path = tmp_path / "sample_project" / "evidence.json"
         raw = evidence_path.read_text(encoding="utf-8")
         data = json.loads(raw)
+
         # Walk all string leaves and ensure none look like an absolute path.
         def _walk(obj):
             if isinstance(obj, dict):
@@ -60,6 +62,7 @@ class TestPortableProjectBlock:
                     yield from _walk(v)
             elif isinstance(obj, str):
                 yield obj
+
         for s in _walk(data):
             assert not _has_absolute_path(s), (
                 f"Found absolute path in serialized evidence: {s!r}"
@@ -92,6 +95,7 @@ class TestDiscoveryPortable:
         result = technology.run  # noqa: F841 -- placeholder to keep imports stable
         # Re-import discovery explicitly so this test stands on its own.
         from aips_analyzer.analyzers import discovery
+
         result = discovery.run(FIXTURE_DIR, ev)
         assert "project_root" not in result.data, (
             "discovery.data must not include the absolute local project path"
@@ -104,9 +108,7 @@ class TestTechnologyDeduplication:
         # requirements.txt with the same package declared twice (no version,
         # then with version). The analyzer must keep only one observation.
         (tmp_path / "requirements.txt").write_text(
-            "whitenoise\n"
-            "whitenoise==6.8.2\n"
-            "django==5.0\n",
+            "whitenoise\nwhitenoise==6.8.2\ndjango==5.0\n",
             encoding="utf-8",
         )
         ev = make_evidence()
@@ -124,8 +126,7 @@ class TestTechnologyDeduplication:
     def test_distinct_observations_not_collapsed(self, tmp_path):
         """Different (tech, signal_type, file, pattern) must remain separate."""
         (tmp_path / "requirements.txt").write_text(
-            "django==5.0\n"
-            "celery>=5.3\n",
+            "django==5.0\ncelery>=5.3\n",
             encoding="utf-8",
         )
         ev = make_evidence()
@@ -165,14 +166,18 @@ class TestUtf8SafeCli:
         A project whose name contains non-ASCII characters must not crash
         the CLI summary path.
         """
-        import sys
 
         from aips_analyzer.cli.main import print_summary
         from aips_analyzer.models import EvidenceReport
 
         report = EvidenceReport(project={"name": "тест_проекта_🚀"})
         # Should not raise even if the underlying console would otherwise
-        # fail with UnicodeEncodeError.
-        print_summary(report, output_path=None)
+        # fail with UnicodeEncodeError. (AA-019: print_summary takes
+        # package_dir; pass a temp dir to avoid "no-output" code path.)
+        from pathlib import Path
+        import tempfile
+
+        with tempfile.TemporaryDirectory() as td:
+            print_summary(report, package_dir=Path(td))
         captured = capsys.readouterr()
         assert "тест_проекта_🚀" in captured.out or captured.out  # at minimum non-empty

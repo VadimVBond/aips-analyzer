@@ -1,7 +1,7 @@
 # AIPS Analyzer
 
-**Version:** 0.1.0  
-**Status:** Prototype — Deterministic Engine only
+**Version:** 0.1.0
+**Status:** Stable — production-ready deterministic engine
 
 ---
 
@@ -9,11 +9,15 @@
 
 AIPS Analyzer is a **deterministic static analysis engine** for software projects.
 
-It reads a project directory and produces a structured `evidence.json` file
-containing raw observations about the project — its structure, technologies,
-dependencies, Git history, and architecture.
+Given a project directory, one command produces a complete analysis package containing:
+- raw evidence
+- normalized facts and metrics
+- AI Context (ready for an external LLM)
+- human-readable audit
+- portable manifest
 
-This is the **foundation** of the AIPS (AI-Powered Software Audit) system.
+The analyzer itself does **not** interpret the data. Interpretation,
+prioritization, and recommendations are the responsibility of an external LLM.
 
 ---
 
@@ -56,82 +60,111 @@ pip install -e .
 pip install -e ".[dev]"
 ```
 
-### Run on a project
+### Analyze a project
 ```bash
-# Option 1: python -m
-python -m aips_analyzer /path/to/your/project
-
-# Option 2: CLI command (after pip install -e .)
 aips-analyze /path/to/your/project
-
-# With custom output directory
-aips-analyze /path/to/your/project --output ./my_results
-
-# With verbose logging
-aips-analyze /path/to/your/project --verbose
+# or:
+python -m aips_analyzer /path/to/your/project
 ```
 
-### Output
-```
-output/
-└── <project_name>/
-    ├── evidence.json   ← main output
-    └── run.log         ← analysis log
-```
+### Options
+```bash
+# Custom output directory
+aips-analyze /path/to/project --output ./my_results
 
----
+# Verbose logging
+aips-analyze /path/to/project --verbose
 
-## Output format
-
-```json
-{
-  "schema": "aips-evidence/v1",
-  "analyzer": { "name": "aips-analyzer", "version": "0.1.0" },
-  "project": { "name": "...", "root": "...", "analyzed_at": "..." },
-  "discovery": { "total_files": 247, "python_files_count": 184, ... },
-  "technology": { "observations": [...], "technology_signals": {...} },
-  "repository": { "total_lines": 14823, "code_lines": 9241, ... },
-  "dependencies": { "python": {...}, "node": {...} },
-  "git": { "available": true, "total_commits": 312, ... },
-  "architecture": { "django_apps": [...], "cyclic_dependencies": {...}, ... },
-  "evidence": [
-    {
-      "id": "E-001",
-      "type": "technology",
-      "subject": "Django",
-      "value": "manage.py present",
-      "source": { "file": "manage.py", "method": "file_presence" }
-    },
-    ...
-  ],
-  "warnings": []
-}
+# Print only (no files)
+aips-analyze /path/to/project --no-output
 ```
 
 ---
 
-## Architecture
+## Generated files
+
+The analyzer produces a complete package under `output/<project-name>/`:
 
 ```
-aips_analyzer/
-├── analyzer.py          ← Orchestrator: runs all analyzers, isolates failures
-├── models.py            ← Data models (EvidenceItem, ArchitectureModule, etc.)
-├── evidence.py          ← EvidenceBuilder with auto-incrementing E-001, E-002...
-├── constants.py         ← Centralized exclusions, file type maps
-└── analyzers/
-    ├── discovery.py     ← Filesystem traversal
-    ├── technology.py    ← Technology signal detection (observations, not verdicts)
-    ├── repository.py    ← LOC metrics
-    ├── dependencies.py  ← Dependency file parsing
-    ├── git.py           ← Read-only Git CLI
-    └── architecture.py  ← Python AST analysis
+output/<project>/
+├── evidence.json              ← raw observations (aips-evidence/v1)
+├── evidence-aggregated.json   ← normalized facts + metrics (aips-evidence-audit/v2)
+├── evidence-ai-context.json   ← LLM-ready projection (aips-ai-context/v1)
+├── evidence-audit.md           ← human-readable audit (aips-evidence-audit/v1)
+└── manifest.json              ← package manifest (aips-manifest/v1)
 ```
 
-### Design principles
-- Each analyzer is **independent** — one failure does not stop others
-- All results include **provenance** (source file, section, method)
-- Technology detection records **observations**, not conclusions
-- The engine (`analyze_project()`) can be called from CLI, Flask, Celery, or API
+### Artifact guide
+
+| Artifact | Schema | Purpose |
+|----------|--------|---------|
+| `evidence.json` | `aips-evidence/v1` | Raw evidence: atomic observations with provenance |
+| `evidence-aggregated.json` | `aips-evidence-audit/v2` | **Facts** (deduplicated observations) + **canonical metrics** |
+| `evidence-ai-context.json` | `aips-ai-context/v1` | Structured input for an external LLM |
+| `evidence-audit.md` | `aips-evidence-audit/v1` | Human-readable summary of the evidence contract |
+| `manifest.json` | `aips-manifest/v1` | Package metadata, schema versions, artifact hashes |
+
+### Key distinctions
+
+**Evidence** — raw observations: "Django signal found in pyproject.toml [dependencies]"
+**Facts** — normalized, deduplicated evidence with stable IDs: one fact per unique observation
+**Metrics** — quantitative measurements: file counts, LOC, commit counts, fan-in/out
+**Unknowns** — evidence types the aggregator does not yet recognize
+**AI Context** — the complete structured view intended for an LLM. It contains facts, metrics, unknowns, and guidance on how to interpret them
+
+**Important:** The existence of a fact does **not** imply correctness, severity, or actionability. The analyzer records what it observed. Interpretation is the LLM's responsibility.
+
+---
+
+## Example output
+
+```
+================================================================
+  AIPS Analyzer  v0.1.0
+================================================================
+
+  Project  : freelance_pulse
+  Analyzed : 2026-09-06T18:12:00+00:00
+  Duration : 4.2s
+
+  ── Summary ──────────────────────────────────────
+  Total files       : 247
+  Python files      : 184
+  Test files        : 23
+  Total LOC         : 14823
+  Python modules    : 89
+  Git available     : True
+  Git branch        : main
+  Architecture mods : 134
+  Cyclic deps       : 2
+  Evidence items    : 54
+  Warnings          : 0
+
+  ── Output package ──────────────────────────────
+  evidence.json                output/freelance_pulse/evidence.json
+  evidence-aggregated.json     output/freelance_pulse/evidence-aggregated.json
+  evidence-ai-context.json    output/freelance_pulse/evidence-ai-context.json
+  evidence-audit.md            output/freelance_pulse/evidence-audit.md
+  manifest.json                output/freelance_pulse/manifest.json
+
+  Manifest schema: aips-manifest/v1 v0.1.0
+
+  Analysis completed successfully.
+```
+
+---
+
+## Determinism
+
+The analyzer is deterministic: two runs of the same analyzer version
+against the same project state produce semantically identical artifacts.
+The only intentionally non-deterministic fields are:
+
+- `project.analyzed_at` — wall-clock timestamp
+- `project.analysis_duration_seconds` — execution time
+- `manifest.generated_at` — when the manifest was written
+
+These are explicitly classified as volatile metadata.
 
 ---
 
@@ -145,22 +178,62 @@ aips_analyzer/
 
 ---
 
+## Architecture
+
+```
+aips_analyzer/
+├── analyzer.py          ← Orchestrator: runs all analyzers, isolates failures
+├── models.py           ← Data models (EvidenceItem, ArchitectureModule, etc.)
+├── evidence.py          ← EvidenceBuilder with auto-incrementing E-001, E-002...
+├── manifest.py          ← Deterministic manifest.json writer
+├── constants.py         ← Centralized exclusions, file type maps
+├── analyzers/
+│   ├── discovery.py    ← Filesystem traversal
+│   ├── technology.py    ← Technology signal detection
+│   ├── repository.py    ← LOC metrics
+│   ├── dependencies.py  ← Dependency file parsing
+│   ├── git.py          ← Read-only Git CLI
+│   └── architecture.py  ← Python AST analysis
+└── cli/
+    └── main.py         ← CLI entry point
+```
+
+### Canonical pipeline (v0.1)
+
+```
+target project
+    ↓
+Analyzer (6 analyzers, isolated failures)
+    ↓
+evidence.json  (aips-evidence/v1)
+    ↓
+Aggregator v2  (stable_id/display_key, facts, canonical_metrics, unknowns)
+    ↓
+evidence-aggregated.json  (aips-evidence-audit/v2)
+    ↓
+AI Context renderer
+    ↓
+evidence-ai-context.json  (aips-ai-context/v1)
+    + evidence-audit.md    (human-readable audit)
+    + manifest.json        (package manifest)
+```
+
+---
+
 ## Running tests
 
 ```bash
 pytest tests/ -v
 ```
 
+Current test count: **164 tests** (all passing).
+
 ---
 
-## Future integration
+## Design principles
 
-The `analyze_project(path)` function is designed to be called from:
-- CLI (current)
-- Flask web UI (next phase)
-- Celery background task (future)
-- REST API (future)
-
-After obtaining a valid `evidence.json`, an AI layer will be introduced
-to interpret the evidence and generate findings. The AI never sees raw code —
-only the structured evidence.
+- Each analyzer is **independent** — one failure does not stop others
+- All results include **provenance** (source file, section, method)
+- Technology detection records **observations**, not conclusions
+- The engine can be called from CLI, Flask, Celery, or API
+- **No assumptions are made** — unavailable information is explicit, not fabricated
